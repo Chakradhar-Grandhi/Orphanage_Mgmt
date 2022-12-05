@@ -4,6 +4,8 @@
  */
 package Business.Enterprise;
 
+import Business.Enterprise.Adoption.AdoptionEnterprise;
+import Business.Enterprise.Orphanage.OrphanageEnterprise;
 import java.util.ArrayList;
 
 /**
@@ -24,5 +26,22 @@ public class EnterpriseDirectory {
     
     public EnterpriseDirectory(){
         enterpriseList=new ArrayList<Enterprise>();
+    }
+        public Enterprise createAndAddEnterprise(String name,Enterprise.EnterpriseType type){
+        Enterprise enterprise=null;
+        if(type==Enterprise.EnterpriseType.Hospital){
+            enterprise=new HospitalEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        else if(type==Enterprise.EnterpriseType.Orphanage){
+            enterprise=new OrphanageEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        else if (type == Enterprise.EnterpriseType.Adoption)
+        {
+            enterprise = new AdoptionEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
+        return enterprise;
     }
 }
