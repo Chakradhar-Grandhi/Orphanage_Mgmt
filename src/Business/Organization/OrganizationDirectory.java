@@ -22,5 +22,4 @@ public class OrganizationDirectory {
         return organizationList;
     }
     
-    
 }
