@@ -1,5 +1,13 @@
 package Business.Role;
 
+import Business.Adopter.AdopterDirectory;
+import Business.Child.ChildDirectory;
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author yashpawar
@@ -36,6 +44,10 @@ public abstract class Role {
             return value;
         }
     }
+    
+    public abstract JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,
+            Organization organization, Enterprise enterprise, EcoSystem business, ChildDirectory directory,
+            AdopterDirectory udirectory);
 
     @Override
     public String toString() {
