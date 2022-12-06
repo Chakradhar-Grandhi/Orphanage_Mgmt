@@ -4,7 +4,7 @@
 
 According to UNICEF there are 140 million orphans in the world (survey done in 2015). Out of those 15.1 million have lost both their parents and are living in orphanage. Most researches have shown that these orphanages are not in proper condition or can provide the basic necessities to the children living in them. Orphans are suffering through a lot in terms of coping up with this world. They are not just deficient of the love of the parents but other facilities as well such as health care (including both mental and physical health)
 
-`CradlesToCrayons` is being developed to aid these orphanages by coordinating with orphanages, police stations, hospitals and schools in the city to bring up the orphans and provide them the necessities. Apart from that the application would be able to provide the tracking on
+`Orphanage Management` is being developed to aid these orphanages by coordinating with orphanages, police stations, hospitals and finance organizations in the city to bring up the orphans and provide them the necessities. Apart from that the application would be able to provide the tracking on
 - Medical history of the child
 - Investigation into the cases of missing child or any misbehavior with the child or by the child
 - Adoption tracking and parent feedback
