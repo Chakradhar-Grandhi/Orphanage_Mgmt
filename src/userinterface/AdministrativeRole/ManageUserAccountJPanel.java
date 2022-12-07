@@ -19,13 +19,44 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
- 
+    /**
+     * Creates new form ManageUserAccountJPanel
+     */
     private JPanel container;
     private Enterprise enterprise;
 
-  
+    public ManageUserAccountJPanel(JPanel container, Enterprise enterprise) {
+        initComponents();
+        this.enterprise = enterprise;
+        this.container = container;
 
+        popOrganizationComboBox();
+       // employeeJComboBox.removeAllItems();
+        popData();
+    }
+
+    public void popOrganizationComboBox() {
+        organizationJComboBox.removeAllItems();
+
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            organizationJComboBox.addItem(organization);
+        }
+    }
     
+    public void populateEmployeeComboBox(Organization organization){
+        employeeJComboBox.removeAllItems();
+        
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+            employeeJComboBox.addItem(employee);
+        }
+    }
+    
+    private void populateRoleComboBox(Organization organization){
+        roleJComboBox.removeAllItems();
+        for (Role role : organization.getSupportedRole()){
+            roleJComboBox.addItem(role);
+        }
+    }
 
     public void popData() {
 
@@ -243,7 +274,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backjButton1ActionPerformed
 
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
-
+        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+        if (organization != null){
+            populateEmployeeComboBox(organization);
+            populateRoleComboBox(organization);
+        }
     }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
