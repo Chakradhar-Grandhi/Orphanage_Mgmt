@@ -152,7 +152,22 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
         
-
+        int selectedRow = workRequestJTable.getSelectedRow();
+        
+        if (selectedRow < 0){
+            
+            JOptionPane.showMessageDialog(null,"Please select a child from table before proceeding");
+            return;
+        }
+        
+        LabTestWorkRequest request = (LabTestWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+     
+        request.setStatus("Processing");
+        //request.setTestResult("Lab test request recieved");
+        ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer, request);
+        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
         
     }//GEN-LAST:event_processJButtonActionPerformed
 
