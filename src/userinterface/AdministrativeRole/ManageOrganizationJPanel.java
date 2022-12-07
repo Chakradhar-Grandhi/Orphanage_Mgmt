@@ -193,8 +193,6 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
           }
       }
         
-//        Type type = (Type) organizationJComboBox.getSelectedItem();
-//        directory.createOrganization(type);
         populateTable();
     }//GEN-LAST:event_addJButtonActionPerformed
 
