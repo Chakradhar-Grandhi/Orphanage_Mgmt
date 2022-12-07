@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author raunak
+ * @author just_chakri
  */
 public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
@@ -23,30 +23,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageEmployeeJPanel(JPanel userProcessContainer,OrganizationDirectory organizationDir) {
-        initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.organizationDir = organizationDir;
-        
-        populateOrganizationComboBox();
-        populateOrganizationEmpComboBox();
-    }
-    
-    public void populateOrganizationComboBox(){
-        organizationJComboBox.removeAllItems();
-        
-        for (Organization organization : organizationDir.getOrganizationList()){
-            organizationJComboBox.addItem(organization);
-        }
-    }
-    
-    public void populateOrganizationEmpComboBox(){
-        organizationEmpJComboBox.removeAllItems();
-        
-        for (Organization organization : organizationDir.getOrganizationList()){
-            organizationEmpJComboBox.addItem(organization);
-        }
-    }
+   
 
     private void populateTable(Organization organization){
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
@@ -203,11 +180,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
         
-        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
-        String name = nameJTextField.getText();
         
-        organization.getEmployeeDirectory().createEmployee(name);
-        populateTable(organization);
         
     }//GEN-LAST:event_addJButtonActionPerformed
 
