@@ -180,7 +180,11 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
         
+        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
+        String name = nameJTextField.getText();
         
+        organization.getEmployeeDirectory().createEmployee(name);
+        populateTable(organization);
         
     }//GEN-LAST:event_addJButtonActionPerformed
 
