@@ -4,7 +4,11 @@
  */
 package userinterface.AdministrativeRole;
 
+import Business.Enterprise.Adoption.AdoptionEnterprise;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Enterprise.EnterpriseType;
+import Business.Enterprise.HospitalEnterprise;
+import Business.Enterprise.Orphanage.OrphanageEnterprise;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
@@ -24,7 +28,32 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageOrganizationJPanel
      */
-   
+    public ManageOrganizationJPanel(JPanel userProcessContainer,OrganizationDirectory directory, Enterprise enterprise) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.directory = directory;
+        this.enterprise=enterprise;
+        populateTable();
+        //populateCombos();
+         organizationJComboBox.removeAllItems();
+        if(enterprise instanceof HospitalEnterprise){
+             organizationJComboBox.addItem(Type.Doctor.getValue());
+               organizationJComboBox.addItem(Type.Lab.getValue());
+               organizationJComboBox.addItem(Type.Pharmacist.getValue());
+        }
+        if(enterprise instanceof OrphanageEnterprise){
+          organizationJComboBox.addItem(Type.ChildCare.getValue());
+               organizationJComboBox.addItem(Type.ChildRegistration.getValue());
+               organizationJComboBox.addItem(Type.FinanceOrphanage.getValue());  
+        }
+        if(enterprise instanceof AdoptionEnterprise){
+           organizationJComboBox.addItem(Type.Adopter.getValue());
+               organizationJComboBox.addItem(Type.Adoption.getValue());
+               organizationJComboBox.addItem(Type.FinanceCheck.getValue()); 
+                 organizationJComboBox.addItem(Type.CriminalCheck.getValue()); 
+        }
+    }
+    
     private void populateCombo(){
         organizationJComboBox.removeAllItems();
        
