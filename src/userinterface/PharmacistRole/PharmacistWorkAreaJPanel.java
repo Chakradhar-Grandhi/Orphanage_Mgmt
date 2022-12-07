@@ -210,7 +210,20 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
-
+        
+        int selectedRow = workRequestJTable.getSelectedRow();
+        
+        if (selectedRow < 0){
+            
+            JOptionPane.showMessageDialog(null,"Please select a child from table to assig");
+            return;
+        }
+        
+        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+        request.setReceiver(userAccount);
+        request.setStatus("Pending");
+        populateTable();
+        processJButton.setEnabled(true);
         
     }//GEN-LAST:event_assignJButtonActionPerformed
 
