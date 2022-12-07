@@ -2,7 +2,9 @@
 
 package userinterface.AdministrativeRole;
 
-
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import javax.swing.JPanel;
 
 /**
  *
@@ -10,8 +12,17 @@ package userinterface.AdministrativeRole;
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     
- 
+    JPanel userProcessContainer;
+    Enterprise enterprise;
+    Network network;
     /** Creates new form AdminWorkAreaJPanel */
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        
+        valueLabel.setText(enterprise.getName());
+    }
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -69,7 +80,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed
         // TODO add your handling code here:
-    
+        
     }//GEN-LAST:event_userJButtonActionPerformed
 
     private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
