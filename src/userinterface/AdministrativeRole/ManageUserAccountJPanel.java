@@ -4,9 +4,14 @@
  */
 package userinterface.AdministrativeRole;
 
-
+import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,12 +19,29 @@ import javax.swing.JPanel;
  */
 public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
-
+ 
     private JPanel container;
+    private Enterprise enterprise;
 
+  
 
     
 
+    public void popData() {
+
+        DefaultTableModel model = (DefaultTableModel) userJTable.getModel();
+
+        model.setRowCount(0);
+
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+                Object row[] = new Object[2];
+                row[0] = ua;
+                row[1] = ua.getRole();
+                ((DefaultTableModel) userJTable.getModel()).addRow(row);
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -202,7 +224,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createUserJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserJButtonActionPerformed
-
+        String userName = nameJTextField.getText();
+        String password = passwordJTextField.getText();
+        Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+        Employee employee = (Employee) employeeJComboBox.getSelectedItem();
+        Role role = (Role) roleJComboBox.getSelectedItem();
+        
+        organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+        
+        popData();
     }//GEN-LAST:event_createUserJButtonActionPerformed
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
