@@ -215,7 +215,22 @@ public class PharmacistWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
-
+       int selectedRow = workRequestJTable.getSelectedRow();
+        
+        if (selectedRow < 0){
+            
+            JOptionPane.showMessageDialog(null,"Please select a child from table before proceeding");
+            return;
+        }
+        
+        PharmacistWorkRequest request = (PharmacistWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
+     
+        request.setStatus("Processing");
+        
+        PharmacistProcessWorkRequestJPanel processWorkRequestJPanel = new PharmacistProcessWorkRequestJPanel(userProcessContainer, request, userAccount, enterprise,child, directory,business,pharmacistOrganization);
+        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
