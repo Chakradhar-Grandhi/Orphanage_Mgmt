@@ -22,4 +22,12 @@ public class OrganizationDirectory {
         return organizationList;
     }
     
+    
+    public Organization createOrganization(Organization.Type type){
+        Organization organization = null;
+        
+        return organization;
+    
+}
+    
 }
