@@ -23,7 +23,30 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageOrganizationJPanel
      */
-   
+    public ManageEmployeeJPanel(JPanel userProcessContainer,OrganizationDirectory organizationDir) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.organizationDir = organizationDir;
+        
+        populateOrganizationComboBox();
+        populateOrganizationEmpComboBox();
+    }
+    
+    public void populateOrganizationComboBox(){
+        organizationJComboBox.removeAllItems();
+        
+        for (Organization organization : organizationDir.getOrganizationList()){
+            organizationJComboBox.addItem(organization);
+        }
+    }
+    
+    public void populateOrganizationEmpComboBox(){
+        organizationEmpJComboBox.removeAllItems();
+        
+        for (Organization organization : organizationDir.getOrganizationList()){
+            organizationEmpJComboBox.addItem(organization);
+        }
+    }
 
     private void populateTable(Organization organization){
         DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
