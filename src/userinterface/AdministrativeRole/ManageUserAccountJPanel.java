@@ -5,6 +5,8 @@
 package userinterface.AdministrativeRole;
 
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -12,12 +14,12 @@ package userinterface.AdministrativeRole;
  */
 public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ManageUserAccountJPanel
-     */
-  
+
+    private JPanel container;
+
 
     
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -205,7 +207,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     private void backjButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backjButton1ActionPerformed
         // TODO add your handling code here:
-      
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
     }//GEN-LAST:event_backjButton1ActionPerformed
 
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
