@@ -5,7 +5,9 @@
 package userinterface.LabAssistantRole;
 
 import Business.WorkQueue.LabTestWorkRequest;
-
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -97,7 +99,16 @@ public class ProcessWorkRequestJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         
-
+        if(resultJTextField.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Please enter the test result");
+        }
+        else
+        {
+            request.setTestResult(resultJTextField.getText());
+            request.setStatus("Completed");
+        
+        }
         
         
     }//GEN-LAST:event_submitJButtonActionPerformed
