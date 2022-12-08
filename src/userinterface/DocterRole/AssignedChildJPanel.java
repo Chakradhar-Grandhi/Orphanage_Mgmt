@@ -479,6 +479,9 @@ public class AssignedChildJPanel extends javax.swing.JPanel {
 
     private void btnPrescribeMedicationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrescribeMedicationActionPerformed
         // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("PrescribeMedicationJPanel", new PrescribeMedicationJPanel(userProcessContainer, userAccount, enterprise, child, childdirectory, request, business));
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnPrescribeMedicationActionPerformed
 
     private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
