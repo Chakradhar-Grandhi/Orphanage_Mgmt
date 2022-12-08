@@ -73,7 +73,7 @@ public class ChildCareWorkAreaJPanel extends javax.swing.JPanel {
         
          populateAdopterTable();
          populateChildTable();
-       
+         populateWorkRequest();
     }
 
     /**
@@ -333,6 +333,27 @@ public void populateChildTable(){
 
 }
 
+public void populateWorkRequest(){
+    
+    
+    DefaultTableModel dtms = (DefaultTableModel)workTable.getModel();
+       dtms.setRowCount(0);
+    for(WorkRequest req : childCareOrganization.getWorkQueue().getWorkRequestList()){
+     
+       if(req instanceof ChildCareWorkRequest){
+           
+          Object[] row = new Object[dtms.getColumnCount()];
+          row[0]=req;
+          row[1]=req.getSender();
+          row[2]=req.getReceiver();
+          row[3]=req.getChildId();
+          row[4]=req.getStatus();
+          
+          dtms.addRow(row);
+           }
+        
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignBtn;
