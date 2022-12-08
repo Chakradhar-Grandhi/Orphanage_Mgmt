@@ -14,6 +14,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FinanceAdoptionWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -183,7 +184,7 @@ public class FinanceCheckWorkAreaJPanel extends javax.swing.JPanel {
         if(receiverval==null){
             JOptionPane.showMessageDialog(null,"Please first assign it to yourself");
         }
-        /*else{
+        else{
         if( receiverval.equals(account.getUsername()) && statusval.equals("Finance organization processing")){
         FinanceCheckProcessRequestJPanel fcprj = new FinanceCheckProcessRequestJPanel(userProcessContainer,account, financeOrganization, enterprise, business, udirectory,(FinanceAdoptionWorkRequest) req, adopter);
         this.userProcessContainer.add("FinanceCheckProcessRequestJPanel", fcprj);
@@ -193,7 +194,7 @@ public class FinanceCheckWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"The selected workrerequest is already processed");
         else if(!receiverval.equals(account.getUsername()))
             JOptionPane.showMessageDialog(null,"Please select the work request assigned to you to proceed");
-        } */
+        } 
         
     }//GEN-LAST:event_processBtnActionPerformed
 
