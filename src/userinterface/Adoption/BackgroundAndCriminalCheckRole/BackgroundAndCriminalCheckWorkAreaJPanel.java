@@ -14,6 +14,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BGCWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -180,9 +181,7 @@ public class BackgroundAndCriminalCheckWorkAreaJPanel extends javax.swing.JPanel
         if(receiverval==null){
             JOptionPane.showMessageDialog(null,"Please first assign it to yourself");
         }
-        
-        
-        /*else{
+        else{
         if( receiverval.equals(account.getUsername()) && statusval.equals("BGC organization processing")){
         BackgroundAndCriminalCheckProcessRequestJPanel baccprj = new BackgroundAndCriminalCheckProcessRequestJPanel(userProcessContainer,account, bgcOrganization, enterprise, business, udirectory,(BGCWorkRequest) req, adopter);
         this.userProcessContainer.add("BackgroundAndCriminalCheckProcessRequestJPanel", baccprj);
@@ -192,7 +191,7 @@ public class BackgroundAndCriminalCheckWorkAreaJPanel extends javax.swing.JPanel
             JOptionPane.showMessageDialog(null,"The selected workrerequest is already processed");
         else if(!receiverval.equals(account.getUsername()))
             JOptionPane.showMessageDialog(null,"Please select the work request assigned to you to proceed");
-        } */
+        } 
     }//GEN-LAST:event_processBtnActionPerformed
 
     private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
