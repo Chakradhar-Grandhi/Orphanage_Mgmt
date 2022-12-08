@@ -194,17 +194,7 @@ public class AdoptionCheckWorkAreaJPanel extends javax.swing.JPanel {
         if(receiverval==null){
             JOptionPane.showMessageDialog(null,"Please first assign it to yourself");
         }
-        /*else{
-        if( receiverval.equals(account.getUsername()) && statusval.equals("Pending with Adoption Organization")){
-        AdoptionCheckProcessRequestJPanel acprj = new AdoptionCheckProcessRequestJPanel(userProcessContainer,account, adoptionOrganization, enterprise, business, udirectory,(AdoptionWorkRequest) req, adopter);
-        this.userProcessContainer.add("AdoptionCheckProcessRequestJPanel", acprj);
-        CardLayout layout = (CardLayout)this.userProcessContainer.getLayout();
-        layout.next(userProcessContainer);}
-        else if(!receiverval.equals(account.getUsername()))
-            JOptionPane.showMessageDialog(null,"Please select the work request assigned to you to proceed");
-        else if(!statusval.equals("Pending with Adoption Organization"))
-            JOptionPane.showMessageDialog(null,"The selected workrequest assigned to you is already processed");
-        } */
+        
     }//GEN-LAST:event_processBtnActionPerformed
 
     private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
