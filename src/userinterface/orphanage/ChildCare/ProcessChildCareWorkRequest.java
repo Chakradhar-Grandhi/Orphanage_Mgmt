@@ -116,14 +116,45 @@ public class ProcessChildCareWorkRequest extends javax.swing.JPanel {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
-
+        if(jTextField1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please enter the remarks");
+            return;
+        }
+        String remarks = jTextField1.getText();
+        
+        request.setMessage(remarks);
+        request.setStatus("Acquired");
+     child.setStatus("Acquired");
+     child.setMedicalStatus(child.getMedicalStatus()+"\n"+"Medically Fit on date"+new Date());
+     
+     for(WorkRequest req: account.getWorkQueue().getWorkRequestList()){
+          if(request.getSender().getRole().equals(Role.RoleType.Pharmacist.getValue())){
+         if(req instanceof DoctorWorkRequest){
+             if(req.getChildId()==child.getChildId()){
+                 String result = ((DoctorWorkRequest)req).getTestResult();
+                 if(((DoctorWorkRequest)req).getTestResult().equalsIgnoreCase("Under Examination")){
+                    ((DoctorWorkRequest)req).setTestResult("test and medicine comepleted"); 
+                 }
+             }
+         }
+     }
+     }
  
         
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
+                userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ChildCareWorkAreaJPanel dwjp = (ChildCareWorkAreaJPanel) component;
+        dwjp.populateChildTable();
+        dwjp.populateWorkRequest();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+       
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
