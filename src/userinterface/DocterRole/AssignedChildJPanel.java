@@ -473,7 +473,9 @@ public class AssignedChildJPanel extends javax.swing.JPanel {
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
 
-        
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("RequestLabTestJPanel", new RequestLabTestJPanel(userProcessContainer, userAccount, enterprise, child, childdirectory, request, business));
+        layout.next(userProcessContainer);
 
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
