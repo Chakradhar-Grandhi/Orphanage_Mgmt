@@ -6,6 +6,7 @@
 package Business.Organization.Adoption;
 
 import Business.Organization.Organization;
+import Business.Role.Adoption.AdopterRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class AdopterOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
+        roles.add(new AdopterRole());
         return roles;
     }
 }
