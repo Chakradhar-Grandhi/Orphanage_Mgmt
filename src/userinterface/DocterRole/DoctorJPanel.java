@@ -232,6 +232,11 @@ Child child;
                 child = ch;
             }
         }
+      
+      AssignedChildJPanel assignedChildJPanel = new AssignedChildJPanel(userProcessContainer ,request, child ,userAccount, doctororganization,enterprise , business, directory);
+        userProcessContainer.add("AssignedChildJPanel", assignedChildJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();        
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_processJButtonActionPerformed
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
