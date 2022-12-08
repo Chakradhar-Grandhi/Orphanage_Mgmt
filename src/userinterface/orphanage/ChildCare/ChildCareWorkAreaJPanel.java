@@ -322,7 +322,17 @@ public class ChildCareWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_assignBtnActionPerformed
 
     private void deleteChildBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteChildBtnActionPerformed
-
+        int selectedRow = childTable.getSelectedRow();
+        if(selectedRow<0){
+             JOptionPane.showMessageDialog(null, "Please select a child");
+            return;
+        }
+        Child ch = (Child) childTable.getValueAt(selectedRow, 0);
+       int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the child?", "Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+       if(result==0){
+        directory.removeChild(ch);
+       }
+        populateChildTable();
     }//GEN-LAST:event_deleteChildBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
