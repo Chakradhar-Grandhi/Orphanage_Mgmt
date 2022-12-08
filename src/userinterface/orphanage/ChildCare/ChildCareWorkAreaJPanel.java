@@ -326,11 +326,41 @@ public class ChildCareWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteChildBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        int selectedRow = jTable1.getSelectedRow();
+        if(selectedRow<0){
+             JOptionPane.showMessageDialog(null, "Please select a request");
+            return;
+        }
+       
+        ChildCareAdoptionWorkRequest req = (ChildCareAdoptionWorkRequest) jTable1.getValueAt(selectedRow, 0);
+        req.setStatus("Approved");
+        for(Child ch: directory.getChildList()){
+            if(ch.getChildId()==req.getChildId()){
+                ch.setStatus("Adopted by "+req.getUserName());
+            }
+        }
+        
+        
+        
+        populateAdopterTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 public void populateChildTable(){
 
-
+    DefaultTableModel dtms = (DefaultTableModel)childTable.getModel();
+    dtms.setRowCount(0);
+    for(Child ch : directory.getChildList()){
+        
+   if(ch.getStatus().equalsIgnoreCase("Acquired") || ch.getStatus().startsWith("Adopted by")){
+          Object[] row = new Object[dtms.getColumnCount()];
+          row[0]=ch;
+          row[1]=ch.getChildname();
+          row[2]=ch.getChildAge();
+          row[3]=ch.getChildGender();
+          row[4]=ch.getStatus();
+          
+          dtms.addRow(row);
+        }
+    }
 }
 
 public void populateWorkRequest(){
