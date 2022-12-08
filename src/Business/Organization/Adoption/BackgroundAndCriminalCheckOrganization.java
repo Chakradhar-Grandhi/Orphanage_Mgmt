@@ -6,6 +6,7 @@
 package Business.Organization.Adoption;
 
 import Business.Organization.Organization;
+import Business.Role.Adoption.CriminalCheckRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class BackgroundAndCriminalCheckOrganization extends Organization{
      @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
+        roles.add(new CriminalCheckRole());
         return roles;
     }
      
