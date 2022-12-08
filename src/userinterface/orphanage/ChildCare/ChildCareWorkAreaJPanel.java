@@ -310,15 +310,58 @@ public class ChildCareWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void processBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processBtnActionPerformed
+        int selectedRow = workTable.getSelectedRow();
+       if(selectedRow<0){
+           JOptionPane.showMessageDialog(null, "Please select a request"); 
+           return;
+       }
+       WorkRequest re = (WorkRequest) workTable.getValueAt(selectedRow, 0);
+      
+        
+       for(Child ch : directory.getChildList()){
 
+           if(ch.getChildId()==re.getChildId()){
+
+               child=ch;
+           
+           }
+       }
+       
+        ProcessChildCareWorkRequest pccwr = new ProcessChildCareWorkRequest(userProcessContainer, organization, (ChildCareWorkRequest) re, directory, child, account, business);
+        this.userProcessContainer.add("ProcessChildCareWorkRequest", pccwr);
+       CardLayout layout = (CardLayout)this.userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
     }//GEN-LAST:event_processBtnActionPerformed
 
     private void viewChildBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewChildBtnActionPerformed
-
+      int selectedRow = childTable.getSelectedRow();
+    
+      
+      if(selectedRow<0){
+           JOptionPane.showMessageDialog(null, "Please select a child");
+          return;
+      }
+      
+          Child child = (Child) childTable.getValueAt(selectedRow, 0);      
+        
+       
+        ViewCompleteChildDetails completeJapanel = new ViewCompleteChildDetails(userProcessContainer,account,organization,enterprise,business,directory, child);
+       this.userProcessContainer.add("ViewCompleteChildDetails", completeJapanel);
+       CardLayout layout = (CardLayout)this.userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
     }//GEN-LAST:event_viewChildBtnActionPerformed
 
     private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
-
+       int selectedRow = workTable.getSelectedRow();
+       if(selectedRow<0){
+           JOptionPane.showMessageDialog(null, "Please select a request");
+           return;
+       }
+       WorkRequest re = (WorkRequest) workTable.getValueAt(selectedRow, 0);
+       re.setReceiver(account);
+       re.setStatus("Pending with child care");
+       populateWorkRequest();
+        processBtn.setEnabled(true);
     }//GEN-LAST:event_assignBtnActionPerformed
 
     private void deleteChildBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteChildBtnActionPerformed
