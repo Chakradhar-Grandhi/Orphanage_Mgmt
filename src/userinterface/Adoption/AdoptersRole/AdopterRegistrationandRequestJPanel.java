@@ -16,6 +16,7 @@ import Business.Organization.Adoption.AdoptionOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdoptionWorkRequest;
+import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -312,7 +313,10 @@ ChildDirectory directory;
 
     private void btnCheckStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckStatusActionPerformed
         
-        
+        CheckStatusJPanel csjp = new CheckStatusJPanel(userProcessContainer, account, adopterorganization, enterprise, business, udirectory, uid, directory);
+        this.userProcessContainer.add("CheckStatusJPanel", csjp);
+        CardLayout layout = (CardLayout) this.userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCheckStatusActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
