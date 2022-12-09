@@ -168,7 +168,10 @@ int selectedRow = jTable1.getSelectedRow();
             return;
         }
         FinanceCCWorkRequest req = (FinanceCCWorkRequest) jTable1.getValueAt(selectedRow, 0);
-        
+        FinanceOrphProcessRequest fopr = new FinanceOrphProcessRequest( userProcessContainer,  account,  financeOrphanageOrganization,  enterprise,  business,  directory, req);
+           userProcessContainer.add("FinanceOrphProcessRequest", fopr);
+           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
         
     }//GEN-LAST:event_processBtActionPerformed
 
