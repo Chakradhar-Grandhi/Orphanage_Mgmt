@@ -6,6 +6,7 @@
 package Business.Organization.Orphanage;
 
 import Business.Organization.Organization;
+import Business.Role.Orphanage.FinanceAssisstantRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -23,6 +24,7 @@ public class FinanceOrphanageOrganization extends Organization {
    @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
+        roles.add(new FinanceAssisstantRole());
         return roles;
     }
      
