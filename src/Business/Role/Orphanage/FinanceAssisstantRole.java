@@ -9,14 +9,20 @@ import Business.Adopter.AdopterDirectory;
 import Business.Child.ChildDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
-import Business.Organization.Orphanage.FinanceOrphanageOrganization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.orphanage.Finance.FinanceWorkAreaJPanel;
 
 /**
  *
  * @author just_chakri
  */
+public class FinanceAssisstantRole extends Role{
+
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, ChildDirectory directory, AdopterDirectory udirectory) {
+        return new FinanceWorkAreaJPanel(userProcessContainer, account, organization, enterprise, business, directory);
+    }
+}

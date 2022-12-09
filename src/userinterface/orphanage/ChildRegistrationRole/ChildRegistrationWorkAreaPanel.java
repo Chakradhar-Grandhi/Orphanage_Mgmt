@@ -3,22 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Orphanage.ChildRegistrationRole;
+package userinterface.orphanage.ChildRegistrationRole;
 
 import Business.Child.Child;
 import Business.Child.ChildDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.Organization.Orphanage.ChildRegistrationOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.DoctorWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
