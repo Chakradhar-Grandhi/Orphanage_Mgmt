@@ -16,7 +16,7 @@ import Business.Organization.Orphanage.ChildCareOrganization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.Orphanage.ChildCare.ChildCareWorkAreaJPanel;
+import userinterface.orphanage.ChildCare.ChildCareWorkAreaJPanel;
 
 /**
  *
