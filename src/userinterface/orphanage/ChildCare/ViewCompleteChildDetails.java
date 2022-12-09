@@ -72,7 +72,7 @@ public class ViewCompleteChildDetails extends javax.swing.JPanel {
         else if(child.getChildGender().equalsIgnoreCase("female")){
             femaleRDB.setSelected(true);
         }
-        //jXDatePicker1.setDate(child.getRegistrationDate());
+        jXDatePicker1.setDate(child.getRegistrationDate());
         identficationMarkText.setText(child.getIdentificationMark());
         bpText.setText(String.valueOf(child.getBP()));
         pulseText.setText(String.valueOf(child.getPulseRate()));
@@ -469,7 +469,10 @@ ImageIcon icon = new ImageIcon(image);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void requestMedicalHelpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestMedicalHelpBtnActionPerformed
-     
+     RequestMedicalHelp rqmh = new RequestMedicalHelp(userProcessContainer, account, organization, enterprise, business, directory, child);
+     this.userProcessContainer.add("RequestMedicalHelp", rqmh);
+     CardLayout layout = (CardLayout) this.userProcessContainer.getLayout();
+     layout.next(userProcessContainer);
     }//GEN-LAST:event_requestMedicalHelpBtnActionPerformed
 
     private void finBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finBtnActionPerformed
@@ -556,7 +559,7 @@ ImageIcon icon = new ImageIcon(image);
     femaleRDB.setEnabled(false);
       bpText.setEnabled(false);
       identficationMarkText.setEnabled(false);
-      //jXDatePicker1.setEnabled(false);
+      jXDatePicker1.setEnabled(false);
       maleRDB.setEnabled(false);
       medicalTextArea.setEnabled(false);
       nameTextField.setEnabled(false);

@@ -23,7 +23,6 @@ public class FinanceOrphanageOrganization extends Organization {
    @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        
         return roles;
     }
      

@@ -5,11 +5,9 @@
  */
 package Business.Organization.Orphanage;
 
-import Business.Child.Child;
-import Business.Child.ChildDirectory;
 import Business.Organization.Organization;
-import Business.Role.DoctorRole;
-import Business.Role.Orphanage.ChildCareRole;
+import Business.Role.AdminRole;
+import Business.Role.Orphanage.OrphanageAdminRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -17,21 +15,19 @@ import java.util.ArrayList;
  *
  * @author just_chakri
  */
-public class ChildCareOrganization extends Organization {
+public class OrphanageAdminOrganization extends Organization{
 
-  
-    public ChildCareOrganization() {
-       super(Organization.Type.ChildCare.getValue());
-      
+    public OrphanageAdminOrganization() {
+        super(Organization.Type.OrphanageAdmin.getValue());
     }
-
+    
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new ChildCareRole());
+        roles.add(new OrphanageAdminRole());
         return roles;
     }
-    
-  
      
 }
+
+

@@ -14,6 +14,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.Orphanage.ChildCareOrganization;
+import Business.Organization.Orphanage.ChildRegistrationOrganization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ChildCareAdoptionWorkRequest;
@@ -344,7 +345,10 @@ public class ChildCareWorkAreaJPanel extends javax.swing.JPanel {
           Child child = (Child) childTable.getValueAt(selectedRow, 0);      
         
        
-        
+        ViewCompleteChildDetails completeJapanel = new ViewCompleteChildDetails(userProcessContainer,account,organization,enterprise,business,directory, child);
+       this.userProcessContainer.add("ViewCompleteChildDetails", completeJapanel);
+       CardLayout layout = (CardLayout)this.userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
     }//GEN-LAST:event_viewChildBtnActionPerformed
 
     private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed

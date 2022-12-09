@@ -7,6 +7,7 @@ package Business.Organization.Orphanage;
 
 import Business.Child.ChildDirectory;
 import Business.Organization.Organization;
+import Business.Role.Orphanage.ChildRegistrationRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ ChildDirectory directory;
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
+        roles.add(new ChildRegistrationRole());
         return roles;
     }
       
