@@ -11,6 +11,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Organization.Orphanage.ChildCareOrganization;
 import Business.Organization.PharmacistOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ChildCareWorkRequest;
@@ -167,7 +168,52 @@ public class PharmacistProcessWorkRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void btnDeliveredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliveredActionPerformed
-      
+      if( PrescriptionTxtArea.getText().isEmpty() )
+        {
+            JOptionPane.showMessageDialog(null,"Please enter message");
+        }
+        
+        else {
+            
+            request.setTestResult(PrescriptionTxtArea.getText());
+            request.setStatus("Delivered");
+            
+            ChildCareWorkRequest temp = new ChildCareWorkRequest();
+            temp.setStatus("Medically Fit");
+            temp.setMessage("Child has been cured");
+            temp.setSender(userAccount);
+            temp.setTestResult("Completed");
+            temp.setChildId(request.getChildId());
+            
+            Organization org = null;
+            for (Network network : business.getNetworkList()){
+                // getNetworkList().getOrganizationDirectory().getOrganizationList()
+                for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
+                    
+                    for(Organization organization: ent.getOrganizationDirectory().getOrganizationList()){
+                        
+                        
+                      // if(this.network.equals(network)){
+				if (organization instanceof ChildCareOrganization){
+									
+				org = organization;
+				break;
+				}
+			//	}
+                        
+                    }
+                }
+            }
+            
+            if (org!=null){
+                org.getWorkQueue().getWorkRequestList().add(temp);
+                
+                userAccount.getWorkQueue().getWorkRequestList().add(temp);
+                business.getWorkQueue().getWorkRequestList().add(temp);
+                
+            }
+            
+        }    
         
     }//GEN-LAST:event_btnDeliveredActionPerformed
 
