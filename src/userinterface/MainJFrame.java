@@ -13,6 +13,7 @@ import Business.JavaEmailSender;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMonokaiProContrastIJTheme;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -259,7 +260,8 @@ public class MainJFrame extends javax.swing.JFrame {
             //UIManager.setLookAndFeel(new FlatArcDarkIJTheme());
             //FlatSolarizedDarkContrastIJTheme.setup();
             //FlatMonokaiProContrastIJTheme.setup();
-                FlatMonokaiProContrastIJTheme.setup();
+                //FlatMonokaiProContrastIJTheme.setup();
+                FlatLightOwlIJTheme.setup();
             //FlatGitHubDarkContrastIJTheme.setup();
             //FlatAtomOneLightIJTheme.setup();
         }catch(Exception e){
