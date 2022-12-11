@@ -9,6 +9,10 @@ import Business.Adopter.AdopterDirectory;
 import Business.Child.Child;
 import Business.Child.ChildDirectory;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -79,5 +83,32 @@ public class DB4OUtilTest {
         system= new DB4OUtil().retrieveSystem();
         assertEquals(system.getSupportedRole().size(),1);
         //fail("role list size not 1");
+    }
+    
+    @Test
+    public void testcheckNetworkName(){
+        system= new DB4OUtil().retrieveSystem();
+        List<String> networklist= new ArrayList<String>();
+        for(Network n: system.getNetworkList()){
+            networklist.add(n.getName());
+        }
+        
+        assertEquals(networklist.contains("NY"), true); 
+        //fail("NetworkList does not contain NY");
+    }
+    
+    @Test
+    public void testcheckNumberOfNetworkHavingEnterprise(){
+        system= new DB4OUtil().retrieveSystem();
+        List<String> networklist= new ArrayList<String>();
+        for(Network n: system.getNetworkList()){
+            for(Enterprise e: n.getEnterpriseDirectory().getEnterpriseList()){
+                if(e.getEnterpriseType().getValue().equals("Hospital"))
+                    networklist.add(n.getName());
+            }
+            
+        }
+        assertEquals(networklist.size(), 3); 
+        //fail("NetworkList does not contain NY");
     }
 }
