@@ -74,6 +74,14 @@ public class DB4OUtil {
         conn.commit();
         conn.close();
     }
+      
+      public int childDirectorySize(){
+        return retrieveDirectory().getChildList().size();
+    }
+    
+    public int UserAccDirectorySize(){
+        return retrieveUserDirectory().getAdoptersList().size();
+    }
     
     public EcoSystem retrieveSystem(){
         
