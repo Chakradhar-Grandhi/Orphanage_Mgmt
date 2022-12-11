@@ -13,10 +13,8 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.Before;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
