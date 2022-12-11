@@ -34,36 +34,34 @@ public class ChildRegistrationWorkAreaPanel extends javax.swing.JPanel {
     UserAccount account;
     ChildRegistrationOrganization childRegistrationOrganization;
     Enterprise enterprise;
-   Child child;
+    Child child;
     ChildDirectory directory;
     EcoSystem business;
     Network network;
     //ChildDirectory anewdir =  this.business.getChildDirectory();
 /*Constructor to initialize the componoents*/
     public ChildRegistrationWorkAreaPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, ChildDirectory directory) {
-     initComponents();
-     this.userProcessContainer=userProcessContainer;
-  this.account=account;
-   this.childRegistrationOrganization= (ChildRegistrationOrganization)organization;
-   this.business = business;
-    this.directory = directory;
-    this.enterprise=enterprise;
-     valueLabel.setText(enterprise.getName());
- 
-  valueLabel1.setText(childRegistrationOrganization.getName());
- 
-  for(Network net: business.getNetworkList()){
-      for(Enterprise ent: net.getEnterpriseDirectory().getEnterpriseList()){
-          if(ent.equals(enterprise)){
-              network= net;
-          }
-      }
-  }
-  
-  
-  
-  poplulateTable();
-               populateChildRequestTable();
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.childRegistrationOrganization = (ChildRegistrationOrganization) organization;
+        this.business = business;
+        this.directory = directory;
+        this.enterprise = enterprise;
+        valueLabel.setText(enterprise.getName());
+
+        valueLabel1.setText(childRegistrationOrganization.getName());
+
+        for (Network net : business.getNetworkList()) {
+            for (Enterprise ent : net.getEnterpriseDirectory().getEnterpriseList()) {
+                if (ent.equals(enterprise)) {
+                    network = net;
+                }
+            }
+        }
+
+        poplulateTable();
+        populateChildRequestTable();
     }
 //Another constructor that is called from the register new child jpanel
 //    ChildRegistrationWorkAreaPanel(JPanel userProcessContainer, Child child, ChildDirectory directory, UserAccount account) {
@@ -242,79 +240,79 @@ public class ChildRegistrationWorkAreaPanel extends javax.swing.JPanel {
     private void createChildBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createChildBtnActionPerformed
         // TODO add your handling code here:
         /*This code will take the flow to register a new child*/
-       RegisterNewChildJPanel registerChildJpanel = new RegisterNewChildJPanel(userProcessContainer, directory, account, enterprise, business, childRegistrationOrganization);
-       this.userProcessContainer.add("RegisterNewChildJPanel", registerChildJpanel);
-       CardLayout layout = (CardLayout)this.userProcessContainer.getLayout();
+        RegisterNewChildJPanel registerChildJpanel = new RegisterNewChildJPanel(userProcessContainer, directory, account, enterprise, business, childRegistrationOrganization);
+        this.userProcessContainer.add("RegisterNewChildJPanel", registerChildJpanel);
+        CardLayout layout = (CardLayout) this.userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_createChildBtnActionPerformed
 
     private void viewChildBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewChildBtnActionPerformed
-        
+
         /*This set of code will take the UI to the vie child details*/
         int selectedRow = jTable1.getSelectedRow();
-        if(selectedRow<0){
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a child to view details");
             return;
         }
-        
-        child = (Child)jTable1.getValueAt(selectedRow, 0);
-             
+
+        child = (Child) jTable1.getValueAt(selectedRow, 0);
+
         ViewChildDetailsJPanel viewChildJpanel = new ViewChildDetailsJPanel(userProcessContainer, child);
-       this.userProcessContainer.add("ViewChildDetailsJPanel", viewChildJpanel);
-       CardLayout layout = (CardLayout)this.userProcessContainer.getLayout();
+        this.userProcessContainer.add("ViewChildDetailsJPanel", viewChildJpanel);
+        CardLayout layout = (CardLayout) this.userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_viewChildBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-       int selectedRow = jTable1.getSelectedRow();
-       if(selectedRow<0){
-           JOptionPane.showMessageDialog(null, "Please select a child to delete");
-       }
-       Child ch = (Child) jTable1.getValueAt(selectedRow, 0);
-       int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the child?", "Alert", JOptionPane.YES_NO_CANCEL_OPTION);
-       if(result==0){
-      directory.removeChild(ch);
-       }
-       poplulateTable();
-       
+        int selectedRow = jTable1.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a child to delete");
+        } else {
+            Child ch = (Child) jTable1.getValueAt(selectedRow, 0);
+            int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the child?", "Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+            if (result == 0) {
+                directory.removeChild(ch);
+            }
+            poplulateTable();
+        }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-/*Method to populate the table of with child details*/    
-    public void poplulateTable(){
-      
-        DefaultTableModel dtms = (DefaultTableModel)jTable1.getModel();
-           dtms.setRowCount(0);
-       
-        for(Child child : directory.getChildList()){
+    /*Method to populate the table of with child details*/
+    public void poplulateTable() {
+
+        DefaultTableModel dtms = (DefaultTableModel) jTable1.getModel();
+        dtms.setRowCount(0);
+
+        for (Child child : directory.getChildList()) {
             Object[] row = new Object[dtms.getColumnCount()];
             row[0] = child;
-            row[1]=child.getChildname();
-            row[2]=child.getChildGender();
-            row[3]=child.getChildAge();
-            row[4]=child.getStatus();
+            row[1] = child.getChildname();
+            row[2] = child.getChildGender();
+            row[3] = child.getChildAge();
+            row[4] = child.getStatus();
             dtms.addRow(row);
-        
+
         }
     }
+
     /*Method to populate the table with work request that has been created for the doctor*/
-        public void populateChildRequestTable(){
-      
-       DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        
+    public void populateChildRequestTable() {
+
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+
         model.setRowCount(0);
-        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
-         
-            if(request instanceof DoctorWorkRequest){
-            Object[] row = new Object[4];
-           row[0]=request;
-           row[1]=request.getSender().getEmployee().getName();
-           row[2]=request.getMessage();
-          
-            
-            String result = ((DoctorWorkRequest) request).getTestResult();
-            row[3] = result == null ? "Waiting" : result;
-            
-            model.addRow(row);
+        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()) {
+
+            if (request instanceof DoctorWorkRequest) {
+                Object[] row = new Object[4];
+                row[0] = request;
+                row[1] = request.getSender().getEmployee().getName();
+                row[2] = request.getMessage();
+
+                String result = ((DoctorWorkRequest) request).getTestResult();
+                row[3] = result == null ? "Waiting" : result;
+
+                model.addRow(row);
             }
         }
     }

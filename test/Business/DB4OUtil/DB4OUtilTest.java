@@ -4,7 +4,7 @@
  */
 package Business.DB4OUtil;
 
-import Model.DB4OUtil.DB4OUtil;
+import Utilities.DB4OUtil.DB4OUtil;
 import Model.Adopter.Adopter;
 import Model.Adopter.AdopterDirectory;
 import Model.Child.Child;

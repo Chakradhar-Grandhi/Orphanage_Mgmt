@@ -1,4 +1,4 @@
-package Model.DB4OUtil;
+package Utilities.DB4OUtil;
 
 import Model.Adopter.AdopterDirectory;
 import Model.Child.ChildDirectory;

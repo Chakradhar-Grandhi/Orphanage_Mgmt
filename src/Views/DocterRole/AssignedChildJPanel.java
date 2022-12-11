@@ -511,6 +511,10 @@ public class AssignedChildJPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Body Temperature should be a positive integer");
                     return;
                 }
+                else if (temperature <= 50 || temperature >= 150) {
+                    JOptionPane.showMessageDialog(null, "Body Temperature should be a between 50-150");
+                    return;
+                }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Please enter in number format for Temperature");
                 return;
@@ -520,6 +524,10 @@ public class AssignedChildJPanel extends javax.swing.JPanel {
                 pulserate = Double.parseDouble(PulseRateTxtField.getText());
                 if (pulserate <= 0.0) {
                     JOptionPane.showMessageDialog(null, "Pulse Rate should be a positive integer");
+                    return;
+                }
+                else if (pulserate <= 50 || pulserate >=200) {
+                    JOptionPane.showMessageDialog(null, "Pulse Rate should be between 50-200");
                     return;
                 }
             } catch (NumberFormatException e) {
@@ -533,6 +541,10 @@ public class AssignedChildJPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "Bloodpressure should be a positive integer");
                     return;
                 }
+                else if (BP <= 50||BP >= 200) {
+                    JOptionPane.showMessageDialog(null, "Bloodpressure should be between 50-200");
+                    return;
+                }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Please enter in number format for Blood Pressure");
 
@@ -543,6 +555,10 @@ public class AssignedChildJPanel extends javax.swing.JPanel {
                 respirationrate = Double.parseDouble(RespirationRateTxtField.getText());
                 if (respirationrate <= 0.0) {
                     JOptionPane.showMessageDialog(null, "Respiration rate should be a positive integer");
+                    return;
+                }
+                else if (respirationrate <= 50 || respirationrate >= 200) {
+                    JOptionPane.showMessageDialog(null, "Respiration rate should be between 50-200");
                     return;
                 }
             } catch (NumberFormatException e) {

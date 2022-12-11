@@ -7,9 +7,9 @@ package Views;
 import Model.Adopter.AdopterDirectory;
 import Model.Child.ChildDirectory;
 import Model.EcoSystem;
-import Model.DB4OUtil.DB4OUtil;
+import Utilities.DB4OUtil.DB4OUtil;
 import Model.Enterprise.Enterprise;
-import Model.JavaEmailSender;
+import Utilities.Email.JavaEmailSender;
 import Model.Network.Network;
 import Model.Organization.Organization;
 import Model.UserAccount.UserAccount;
@@ -182,6 +182,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
         // Get user name
         String userName = userNameJTextField.getText();
+        boolean flag=false;
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
@@ -191,11 +192,20 @@ public class MainJFrame extends javax.swing.JFrame {
         if(userAccount!=null){
             new JavaEmailSender().createAndSendEmail("pawaryash837@gmail.com", "Employee Login",
                 userAccount.getRole()+"Has LoggedIn !!!");
+            flag=true;
         }
         Enterprise inEnterprise=null;
         Organization inOrganization=null;
-        
-        if(userAccount==null){
+        String i=null,j=null;
+        i=String.valueOf(((int)(Math.random()*9000)+1000));
+        if(userAccount!=null){
+        if(userAccount.getRole().toString().equals("Model.Role.SystemAdminRole")){
+            JOptionPane.showMessageDialog(null, "OTP sent to Email");
+            new JavaEmailSender().createAndSendEmail("pawaryash837@gmail.com", "OTP sent to Email",
+                "Otp is :"+i);
+            j=JOptionPane.showInputDialog(null, "Please enter OTP");
+            if(i.equals(j)){
+                if(userAccount==null){
             //Step 2: Go inside each network and check each enterprise
             for(Network network:system.getNetworkList()){
                 //Step 2.a: check against each enterprise
@@ -226,8 +236,47 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
             }
         }
-        
+            }//inner if
+            else{
+                JOptionPane.showMessageDialog(null, "Otp incorrect");
+                return;
+            }
+        }//outer if
+    }
+        else{
+            //Step 2: Go inside each network and check each enterprise
+            for(Network network:system.getNetworkList()){
+                //Step 2.a: check against each enterprise
+                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                    userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                    if(userAccount==null){
+                       //Step 3:check against each organization for each enterprise
+                       for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                           userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
+                           if(userAccount!=null){
+                               inEnterprise=enterprise;
+                               inOrganization=organization;
+                               break;
+                           }
+                       }
+                        
+                    }
+                    else{
+                       inEnterprise=enterprise;
+                       break;
+                    }
+                    if(inOrganization!=null){
+                        break;
+                    }  
+                }
+                if(inEnterprise!=null){
+                    break;
+                }
+            }
+        }
+           
         if(userAccount==null){
+            System.out.println("Role other than SystemAdmin");
             JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
         }

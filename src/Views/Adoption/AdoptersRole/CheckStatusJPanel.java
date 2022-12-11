@@ -36,34 +36,33 @@ public class CheckStatusJPanel extends javax.swing.JPanel {
     AdopterDirectory udirectory;
     AdopterOrganization adopterorganization;
     Adopter adopter;
-    String bgcstatus,financestatus;
+    String bgcstatus, financestatus;
     int uid;
     ChildDirectory directory;
-    CheckStatusJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, AdopterDirectory udirectory,int uid, ChildDirectory directory) {
+
+    CheckStatusJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, AdopterDirectory udirectory, int uid, ChildDirectory directory) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.udirectory=udirectory;
-        this.account=account;
-        this.enterprise=enterprise;
+        this.userProcessContainer = userProcessContainer;
+        this.udirectory = udirectory;
+        this.account = account;
+        this.enterprise = enterprise;
         this.business = business;
-        this.adopterorganization =(AdopterOrganization) organization;
+        this.adopterorganization = (AdopterOrganization) organization;
         this.uid = uid;
         this.directory = directory;
         //if condition for enabling proceed with adoption button if BGC and fin checks are approved
-       for(Adopter a: udirectory.getAdoptersList()){
-           if(a.getUsername().equals(account.getUsername())){
-               adopter=a;
-           }
-       }
-        
+        for (Adopter a : udirectory.getAdoptersList()) {
+            if (a.getUsername().equals(account.getUsername())) {
+                adopter = a;
+            }
+        }
+
         populateTable();
 //        if(bgcstatus.equals("Approved")&& financestatus.equals("Approved")){
 //            btnProceedWithAdoption.setEnabled(true);
 //        }
-        
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -153,32 +152,32 @@ public class CheckStatusJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProceedWithAdoptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProceedWithAdoptionActionPerformed
-       
-        if(workTable.getRowCount()<1){
+
+        if (workTable.getRowCount() < 1) {
             JOptionPane.showMessageDialog(null, "Adoption request is still in process with the Investigation team");
-        }
-        if(bgcstatus.equals("Approved")&& financestatus.equals("Approved")){
-            
-        ChildSelectionJPanel csjp = new ChildSelectionJPanel(userProcessContainer, account, adopterorganization, enterprise, business, udirectory, uid, directory);
-        this.userProcessContainer.add("ChildSelectionJPanel", csjp);
-        CardLayout layout = (CardLayout) this.userProcessContainer.getLayout();
-        layout.next(userProcessContainer); 
-        }
-        else if(bgcstatus.equals("Pending")|| financestatus.equals("Pending")){
-            JOptionPane.showMessageDialog(null, "Adoption request is still in process with the Investigation team");
-        }
-        else
-            JOptionPane.showMessageDialog(null, "Adoption request denied by Investigation Team");
+        } else {
+            if (bgcstatus.equals("Approved") && financestatus.equals("Approved")) {
+
+                ChildSelectionJPanel csjp = new ChildSelectionJPanel(userProcessContainer, account, adopterorganization, enterprise, business, udirectory, uid, directory);
+                this.userProcessContainer.add("ChildSelectionJPanel", csjp);
+                CardLayout layout = (CardLayout) this.userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } else if (bgcstatus.equals("Pending") || financestatus.equals("Pending")) {
+                JOptionPane.showMessageDialog(null, "Adoption request is still in process with the Investigation team");
+            } else {
+                JOptionPane.showMessageDialog(null, "Adoption request denied by Investigation Team");
+            }
+        }//main else
     }//GEN-LAST:event_btnProceedWithAdoptionActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnProceedWithAdoption;
@@ -188,23 +187,23 @@ public class CheckStatusJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-       DefaultTableModel dtms = (DefaultTableModel) workTable.getModel();
-       dtms.setRowCount(0);
-       
-       for(WorkRequest req: adopterorganization.getWorkQueue().getWorkRequestList()){
-           System.out.println("check status vaala page req user id, uid, account"+req.getUserId()+" "+uid+" "+account.getUsername());
-           if(req instanceof AdopterWorkRequest ) {
-               if(req.getUserId()==adopter.getUserId()){
-               Object[] row = new Object[dtms.getColumnCount()];
-               row[0]=req;
-               row[1]=((AdopterWorkRequest) req).getBgcStatus();
-               row[2]=((AdopterWorkRequest) req).getFinanceStatus();
-               dtms.addRow(row);
-               
-               bgcstatus = ((AdopterWorkRequest) req).getBgcStatus();
-               financestatus = ((AdopterWorkRequest) req).getFinanceStatus();
-               }
-           }
-       }
+        DefaultTableModel dtms = (DefaultTableModel) workTable.getModel();
+        dtms.setRowCount(0);
+
+        for (WorkRequest req : adopterorganization.getWorkQueue().getWorkRequestList()) {
+            System.out.println("check status vaala page req user id, uid, account" + req.getUserId() + " " + uid + " " + account.getUsername());
+            if (req instanceof AdopterWorkRequest) {
+                if (req.getUserId() == adopter.getUserId()) {
+                    Object[] row = new Object[dtms.getColumnCount()];
+                    row[0] = req;
+                    row[1] = ((AdopterWorkRequest) req).getBgcStatus();
+                    row[2] = ((AdopterWorkRequest) req).getFinanceStatus();
+                    dtms.addRow(row);
+
+                    bgcstatus = ((AdopterWorkRequest) req).getBgcStatus();
+                    financestatus = ((AdopterWorkRequest) req).getFinanceStatus();
+                }
+            }
+        }
     }
 }

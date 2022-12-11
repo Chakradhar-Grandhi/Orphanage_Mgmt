@@ -11,7 +11,7 @@ import Model.Child.Child;
 import Model.Child.ChildDirectory;
 import Model.EcoSystem;
 import Model.Enterprise.Enterprise;
-import Model.JavaEmailSender;
+import Utilities.Email.JavaEmailSender;
 import Model.Network.Network;
 import Model.Organization.Adoption.AdopterOrganization;
 import Model.Organization.Organization;

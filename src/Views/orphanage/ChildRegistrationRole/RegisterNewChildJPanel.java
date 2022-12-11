@@ -9,7 +9,7 @@ import Model.Child.Child;
 import Model.Child.ChildDirectory;
 import Model.EcoSystem;
 import Model.Enterprise.Enterprise;
-import Model.JavaEmailSender;
+import Utilities.Email.JavaEmailSender;
 import Model.Network.Network;
 import Model.Organization.DoctorOrganization;
 import Model.Organization.Organization;
@@ -355,7 +355,7 @@ calenderPanel.add(calendar, BorderLayout.CENTER);
                 }
                 
                 new JavaEmailSender().createAndSendEmail("pawaryash837@gmail.com", "New Child Registration",
-                child.getChildname()+"as child is registered !!!");
+                child.getChildname()+" as child is registered !!!");
                 
                 /*Once the request has been moved and child data has been added, the data is moved to the Child registration page again*/
                 ChildRegistrationWorkAreaPanel childregpanel = new ChildRegistrationWorkAreaPanel(userProcessContainer, account, organization, enterprise, business, directory);

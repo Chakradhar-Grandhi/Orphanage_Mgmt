@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package Utilities.Email;
 
 /**
  *
@@ -47,7 +47,7 @@ public class JavaEmailSender {
             message.setFrom(new InternetAddress("pawaryash837@gmail.com")); //Set from address of the email
             message.setContent(msgText, "text/html"); //set content type of the email
 
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("pawaryash837@gmail.com")); //Set email recipient
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("pawar.ya@northeastern.edu")); //Set email recipient
 
             message.setSubject(msgSubject); //Set email message subject
             Transport.send(message); //Send email message

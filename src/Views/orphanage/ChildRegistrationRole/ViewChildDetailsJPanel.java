@@ -398,13 +398,14 @@ uploadBtn.setEnabled(false);
 }
 
    private String browseImageFile() {
-           JFileChooser chooseFile = new JFileChooser();
+        JFileChooser chooseFile = new JFileChooser(new File("./"));
         chooseFile.showOpenDialog(null);
         File file = chooseFile.getSelectedFile();
         String filePath = file.getPath();
         System.out.println(filePath);
-        imageTextField.setText(filePath);
+        imageTextField.setText("./"+filePath.split("Mgmt/",2)[1]);
         return filePath;
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelBtn;

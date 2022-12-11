@@ -481,6 +481,9 @@ try{
           if(salary<0){
         JOptionPane.showMessageDialog(null, "Salary cannot be negative");
         return true;  
+     } else if (salary<1000){
+         JOptionPane.showMessageDialog(null, "Insufficient Salary for adoption");
+        return true;
      }
     }
      catch(NumberFormatException ex){

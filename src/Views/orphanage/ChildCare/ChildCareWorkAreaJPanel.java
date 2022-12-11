@@ -34,45 +34,45 @@ public class ChildCareWorkAreaJPanel extends javax.swing.JPanel {
      * Creates new form ChildCareWorkAreaJPanel
      */
     JPanel userProcessContainer;
-     Enterprise enterprise;
-     Organization organization;
-     UserAccount account;
-     ChildCareOrganization childCareOrganization;
+    Enterprise enterprise;
+    Organization organization;
+    UserAccount account;
+    ChildCareOrganization childCareOrganization;
     ChildDirectory directory;
     Child child;
     EcoSystem business;
     ChildCareWorkAreaJPanel panel;
-     AdopterDirectory udirectory;
-     Adopter adopter;
-      Role roler;
-         Network network;
-      
+    AdopterDirectory udirectory;
+    Adopter adopter;
+    Role roler;
+    Network network;
+
     public ChildCareWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, ChildDirectory directory, AdopterDirectory udirectory) {
-     initComponents();
-    this.userProcessContainer=userProcessContainer;
-    this.account=account;
-    this.business = business;
-    this.childCareOrganization=(ChildCareOrganization)organization;
-    this.directory = directory;
-    this.udirectory = udirectory;
-    
-         System.out.println("directory; "+directory.toString());
-    this.enterprise=enterprise;
-         valueLabel.setText(enterprise.getName());
-         orgLabel.setText(childCareOrganization.getName());
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.business = business;
+        this.childCareOrganization = (ChildCareOrganization) organization;
+        this.directory = directory;
+        this.udirectory = udirectory;
+
+        System.out.println("directory; " + directory.toString());
+        this.enterprise = enterprise;
+        valueLabel.setText(enterprise.getName());
+        orgLabel.setText(childCareOrganization.getName());
         processBtn.setEnabled(false);
-    
-        for(Network net: business.getNetworkList()){
-      for(Enterprise ent: net.getEnterpriseDirectory().getEnterpriseList()){
-          if(ent.equals(enterprise)){
-              network= net;
-          }
-      }
-  }
-        
-         populateAdopterTable();
-         populateChildTable();
-         populateWorkRequest();
+
+        for (Network net : business.getNetworkList()) {
+            for (Enterprise ent : net.getEnterpriseDirectory().getEnterpriseList()) {
+                if (ent.equals(enterprise)) {
+                    network = net;
+                }
+            }
+        }
+
+        populateAdopterTable();
+        populateChildTable();
+        populateWorkRequest();
     }
 
     /**
@@ -280,7 +280,7 @@ public class ChildCareWorkAreaJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(orgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(orgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -317,132 +317,138 @@ public class ChildCareWorkAreaJPanel extends javax.swing.JPanel {
 
     private void processBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processBtnActionPerformed
         int selectedRow = workTable.getSelectedRow();
-       if(selectedRow<0){
-           JOptionPane.showMessageDialog(null, "Please select a request"); 
-           return;
-       }
-       WorkRequest re = (WorkRequest) workTable.getValueAt(selectedRow, 0);
-      
-        
-       for(Child ch : directory.getChildList()){
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a request");
+            return;
+        }
+        WorkRequest re = (WorkRequest) workTable.getValueAt(selectedRow, 0);
 
-           if(ch.getChildId()==re.getChildId()){
+        for (Child ch : directory.getChildList()) {
 
-               child=ch;
-           
-           }
-       }
-       
+            if (ch.getChildId() == re.getChildId()) {
+
+                child = ch;
+
+            }
+        }
+
         ProcessChildCareWorkRequest pccwr = new ProcessChildCareWorkRequest(userProcessContainer, organization, (ChildCareWorkRequest) re, directory, child, account, business);
         this.userProcessContainer.add("ProcessChildCareWorkRequest", pccwr);
-       CardLayout layout = (CardLayout)this.userProcessContainer.getLayout();
-       layout.next(userProcessContainer);
+        CardLayout layout = (CardLayout) this.userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_processBtnActionPerformed
 
     private void viewChildBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewChildBtnActionPerformed
-      int selectedRow = childTable.getSelectedRow();
-    
-      
-      if(selectedRow<0){
-           JOptionPane.showMessageDialog(null, "Please select a child");
-          return;
-      }
-      
-          Child child = (Child) childTable.getValueAt(selectedRow, 0);      
-        
-       
-        ViewCompleteChildDetails completeJapanel = new ViewCompleteChildDetails(userProcessContainer,account,organization,enterprise,business,directory, child);
-       this.userProcessContainer.add("ViewCompleteChildDetails", completeJapanel);
-       CardLayout layout = (CardLayout)this.userProcessContainer.getLayout();
-       layout.next(userProcessContainer);
+        int selectedRow = childTable.getSelectedRow();
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a child");
+            return;
+        }
+
+        Child child = (Child) childTable.getValueAt(selectedRow, 0);
+
+        ViewCompleteChildDetails completeJapanel = new ViewCompleteChildDetails(userProcessContainer, account, organization, enterprise, business, directory, child);
+        this.userProcessContainer.add("ViewCompleteChildDetails", completeJapanel);
+        CardLayout layout = (CardLayout) this.userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_viewChildBtnActionPerformed
 
     private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
-       int selectedRow = workTable.getSelectedRow();
-       if(selectedRow<0){
-           JOptionPane.showMessageDialog(null, "Please select a request");
-           return;
-       }
-       WorkRequest re = (WorkRequest) workTable.getValueAt(selectedRow, 0);
-       re.setReceiver(account);
-       re.setStatus("Pending with child care");
-       populateWorkRequest();
+        int selectedRow = workTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a request");
+            return;
+        }
+        WorkRequest re = (WorkRequest) workTable.getValueAt(selectedRow, 0);
+        re.setReceiver(account);
+        re.setStatus("Pending with child care");
+        populateWorkRequest();
         processBtn.setEnabled(true);
     }//GEN-LAST:event_assignBtnActionPerformed
 
     private void deleteChildBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteChildBtnActionPerformed
         int selectedRow = childTable.getSelectedRow();
-        if(selectedRow<0){
-             JOptionPane.showMessageDialog(null, "Please select a child");
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a child");
             return;
         }
         Child ch = (Child) childTable.getValueAt(selectedRow, 0);
-       int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the child?", "Alert", JOptionPane.YES_NO_CANCEL_OPTION);
-       if(result==0){
-        directory.removeChild(ch);
-       }
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the child?", "Alert", JOptionPane.YES_NO_CANCEL_OPTION);
+        if (result == 0) {
+            directory.removeChild(ch);
+        }
         populateChildTable();
     }//GEN-LAST:event_deleteChildBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int selectedRow = jTable1.getSelectedRow();
-        if(selectedRow<0){
-             JOptionPane.showMessageDialog(null, "Please select a request");
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a request");
             return;
         }
-       
-        ChildCareAdoptionWorkRequest req = (ChildCareAdoptionWorkRequest) jTable1.getValueAt(selectedRow, 0);
-        req.setStatus("Approved");
-        for(Child ch: directory.getChildList()){
-            if(ch.getChildId()==req.getChildId()){
-                ch.setStatus("Adopted by "+req.getUserName());
+        int n = JOptionPane.showConfirmDialog(
+                null,
+                "Would you like to approve this request?",
+                "Request process",
+                JOptionPane.YES_NO_OPTION);
+
+        if (n == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Request Approved");
+            ChildCareAdoptionWorkRequest req = (ChildCareAdoptionWorkRequest) jTable1.getValueAt(selectedRow, 0);
+            req.setStatus("Approved");
+            for (Child ch : directory.getChildList()) {
+                if (ch.getChildId() == req.getChildId()) {
+                    ch.setStatus("Adopted by " + req.getUserName());
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Request Rejected");
+            ChildCareAdoptionWorkRequest req = (ChildCareAdoptionWorkRequest) jTable1.getValueAt(selectedRow, 0);
+        req.setStatus("Rejected");
         }
-        
-        
-        
+
         populateAdopterTable();
     }//GEN-LAST:event_jButton1ActionPerformed
-public void populateChildTable(){
+    public void populateChildTable() {
 
-    DefaultTableModel dtms = (DefaultTableModel)childTable.getModel();
-    dtms.setRowCount(0);
-    for(Child ch : directory.getChildList()){
-        
-   if(ch.getStatus().equalsIgnoreCase("Acquired") || ch.getStatus().startsWith("Adopted by")){
-          Object[] row = new Object[dtms.getColumnCount()];
-          row[0]=ch;
-          row[1]=ch.getChildname();
-          row[2]=ch.getChildAge();
-          row[3]=ch.getChildGender();
-          row[4]=ch.getStatus();
-          
-          dtms.addRow(row);
+        DefaultTableModel dtms = (DefaultTableModel) childTable.getModel();
+        dtms.setRowCount(0);
+        for (Child ch : directory.getChildList()) {
+
+            if (ch.getStatus().equalsIgnoreCase("Acquired") || ch.getStatus().startsWith("Adopted by")) {
+                Object[] row = new Object[dtms.getColumnCount()];
+                row[0] = ch;
+                row[1] = ch.getChildname();
+                row[2] = ch.getChildAge();
+                row[3] = ch.getChildGender();
+                row[4] = ch.getStatus();
+
+                dtms.addRow(row);
+            }
         }
     }
-}
 
-public void populateWorkRequest(){
-    
-    
-    DefaultTableModel dtms = (DefaultTableModel)workTable.getModel();
-       dtms.setRowCount(0);
-    for(WorkRequest req : childCareOrganization.getWorkQueue().getWorkRequestList()){
-     
-       if(req instanceof ChildCareWorkRequest){
-           
-          Object[] row = new Object[dtms.getColumnCount()];
-          row[0]=req;
-          row[1]=req.getSender();
-          row[2]=req.getReceiver();
-          row[3]=req.getChildId();
-          row[4]=req.getStatus();
-          
-          dtms.addRow(row);
-           }
-        
+    public void populateWorkRequest() {
+
+        DefaultTableModel dtms = (DefaultTableModel) workTable.getModel();
+        dtms.setRowCount(0);
+        for (WorkRequest req : childCareOrganization.getWorkQueue().getWorkRequestList()) {
+
+            if (req instanceof ChildCareWorkRequest) {
+
+                Object[] row = new Object[dtms.getColumnCount()];
+                row[0] = req;
+                row[1] = req.getSender();
+                row[2] = req.getReceiver();
+                row[3] = req.getChildId();
+                row[4] = req.getStatus();
+
+                dtms.addRow(row);
+            }
+
+        }
     }
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignBtn;
@@ -466,25 +472,22 @@ public void populateWorkRequest(){
     private javax.swing.JTable workTable;
     // End of variables declaration//GEN-END:variables
 
-    public void populateAdopterTable(){
+    public void populateAdopterTable() {
         DefaultTableModel dtms = (DefaultTableModel) jTable1.getModel();
         dtms.setRowCount(0);
-        for(WorkRequest req: business.getWorkQueue().getWorkRequestList()){
-            if(req instanceof ChildCareAdoptionWorkRequest){
+        for (WorkRequest req : business.getWorkQueue().getWorkRequestList()) {
+            if (req instanceof ChildCareAdoptionWorkRequest) {
 
-                
-                    Object[] row = new Object[dtms.getColumnCount()];
-                    row[0]=req;
-                    row[1]=req.getChildId();
-                    row[2]= ((ChildCareAdoptionWorkRequest) req).getUserName();
-                    row[3]= req.getStatus();
-                    dtms.addRow(row);
-                }
-            
+                Object[] row = new Object[dtms.getColumnCount()];
+                row[0] = req;
+                row[1] = req.getChildId();
+                row[2] = ((ChildCareAdoptionWorkRequest) req).getUserName();
+                row[3] = req.getStatus();
+                dtms.addRow(row);
+            }
+
         }
-        
+
     }
-    
-    
 
 }
