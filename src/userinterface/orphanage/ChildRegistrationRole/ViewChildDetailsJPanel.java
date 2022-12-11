@@ -6,6 +6,8 @@
 package userinterface.orphanage.ChildRegistrationRole;
 
 import Business.Child.Child;
+import com.toedter.calendar.JCalendar;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.image.BufferedImage;
@@ -13,6 +15,7 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,6 +38,8 @@ public class ViewChildDetailsJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Child child;
+    
+    JCalendar calendar= new JCalendar();
     public ViewChildDetailsJPanel(JPanel userProcessContainer, Child child) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
@@ -47,7 +52,9 @@ public class ViewChildDetailsJPanel extends javax.swing.JPanel {
         else if(child.getChildGender().equalsIgnoreCase("female")){
             femaleRDB.setSelected(true);
         }
-        /*jXDatePicker1.setDate(child.getRegistrationDate());*/ dateTextField.setText(child.getRegistrationDate().toString());
+        calendarPanel.add(calendar);
+        calendarPanel.setLayout(new BorderLayout());
+        calendarPanel.add(calendar,BorderLayout.CENTER);
         jTextArea1.setText(child.getIdentificationMark());
         imageTextField.setText(child.getImageDetails());
         displayImage();
@@ -105,7 +112,7 @@ public class ViewChildDetailsJPanel extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         imageTextField = new javax.swing.JTextField();
         uploadBtn = new javax.swing.JButton();
-        dateTextField = new javax.swing.JTextField();
+        calendarPanel = new javax.swing.JLabel();
 
         setEnabled(false);
 
@@ -194,8 +201,6 @@ public class ViewChildDetailsJPanel extends javax.swing.JPanel {
             }
         });
 
-        dateTextField.setEnabled(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,7 +239,7 @@ public class ViewChildDetailsJPanel extends javax.swing.JPanel {
                                             .addComponent(ageComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(nameTextField)
                                             .addComponent(imageTextField)
-                                            .addComponent(dateTextField))))
+                                            .addComponent(calendarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(uploadBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -271,7 +276,7 @@ public class ViewChildDetailsJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(calendarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(imageLable, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,15 +331,6 @@ public class ViewChildDetailsJPanel extends javax.swing.JPanel {
                 else if(femaleRDB.isSelected()){
                     gender = "Female";
                 }
-                /*Date date = jXDatePicker1.getDate();
-                DateFormat formatit = new SimpleDateFormat("yyyy-MM-dd");
-                String temp = formatit.format(date);
-                Date regDate = new Date();
-                try {
-                    regDate = formatit.parse(temp);
-                } catch (ParseException ex) {
-                    Logger.getLogger(ViewChildDetailsJPanel.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
                 String identificationMark = jTextArea1.getText();
                 
                 child.setChildAge(childAge);
@@ -342,7 +338,8 @@ public class ViewChildDetailsJPanel extends javax.swing.JPanel {
                 child.setChildname(childName);
                 child.setIdentificationMark(identificationMark);
                 child.setImageDetails(imageTextField.getText());
-                /*child.setRegistrationDate(regDate);*/child.setRegistrationDate(new SimpleDateFormat("yyyy-MM-dd").parse(dateTextField.getText()));
+                ///*child.setRegistrationDate(regDate);*/child.setRegistrationDate(new SimpleDateFormat("yyyy-MM-dd").parse(dateTextField.getText()));
+                child.setRegistrationDate(calendar.getDate());
                 child.setChildGender(gender);
                 
                 
@@ -373,7 +370,8 @@ imageLable.setEnabled(true);
 jButton1.setEnabled(true);
 jScrollPane1.setEnabled(true);
 jTextArea1.setEnabled(true);
-/*jXDatePicker1.setEnabled(true);*/ dateTextField.setEditable(true);
+///*jXDatePicker1.setEnabled(true);*/ dateTextField.setEditable(true);
+calendar.setEnabled(true);
 maleRDB.setEnabled(true);
 nameTextField.setEnabled(true);
 saveBtn.setEnabled(true);
@@ -389,7 +387,8 @@ imageTextField.setEnabled(false);
 
 jScrollPane1.setEnabled(false);
 jTextArea1.setEnabled(false);
-/*jXDatePicker1.setEnabled(false);*/ dateTextField.setEditable(false);
+///*jXDatePicker1.setEnabled(false);*/ dateTextField.setEditable(false);
+calendar.setEnabled(false);
 maleRDB.setEnabled(false);
 nameTextField.setEnabled(false);
 saveBtn.setEnabled(false);
@@ -410,7 +409,7 @@ uploadBtn.setEnabled(false);
     private javax.swing.JButton CancelBtn;
     private javax.swing.JComboBox ageComboBox;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField dateTextField;
+    private javax.swing.JLabel calendarPanel;
     private javax.swing.JRadioButton femaleRDB;
     private javax.swing.JLabel imageLable;
     private javax.swing.JTextField imageTextField;
@@ -432,24 +431,15 @@ uploadBtn.setEnabled(false);
     // End of variables declaration//GEN-END:variables
 
  public boolean validation() throws ParseException {
-//         Date date = new Date();
-      DateFormat formait = new SimpleDateFormat("yyyy/MM/dd");
-      //String format = formait.format(date);
-//     Date todayDate = formait.parse(format);
-//     
-     /*String selectedFormaString ="";
-      try{
-      Date selected = jXDatePicker1.getDate();
-    selectedFormaString = formait.format(selected);
-     }
-     catch(Exception e){
-      JOptionPane.showMessageDialog(null, "Please select the registration date");
-      return true;
-     }*/
-//     Date selectedDate = formait.parse(selectedFormaString);
- 
+
+     Date SelectedDate = calendar.getDate();
+     Date currentDate= new Date();
      if(nameTextField.getText().isEmpty()){
          JOptionPane.showMessageDialog(null, "Please enter the name of the child");
+         return true;
+     }
+     else if(SelectedDate.compareTo(currentDate)>0){
+         JOptionPane.showMessageDialog(null,"Registration date cannot be in future");
          return true;
      }
      else if(!validateName()){
@@ -462,23 +452,6 @@ uploadBtn.setEnabled(false);
      }
      else if(!maleRDB.isSelected()&& !femaleRDB.isSelected()){
          JOptionPane.showMessageDialog(null, "Please select the gender of the child");
-         return true;
-     }
-     /*else if(selectedDate.after(todayDate)){
-         JOptionPane.showMessageDialog(null, "Registration date cannot be before");
-         return true;
-     }
-     {
-        JOptionPane.showMessageDialog(null, "Please select the registration date");
-         return true;  
-     }*/
-     else if(dateTextField.getText().isEmpty())
-     {
-        JOptionPane.showMessageDialog(null, "Please select the registration date");
-         return true;  
-     }
-     else if(new SimpleDateFormat("yyyy-MM-dd").parse(dateTextField.getText()).compareTo(new Date())>1){
-         JOptionPane.showMessageDialog(null, "Registration date cannot be in future");
          return true;
      }
      else if(jTextArea1.getText().isEmpty()){

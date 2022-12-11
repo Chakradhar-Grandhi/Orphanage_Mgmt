@@ -9,6 +9,7 @@ import Business.Enterprise.Enterprise;
 import Business.Enterprise.Enterprise.EnterpriseType;
 import Business.Enterprise.HospitalEnterprise;
 import Business.Enterprise.Orphanage.OrphanageEnterprise;
+import Business.Enterprise.VerificationEnterprise;
 import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
@@ -49,6 +50,10 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         if(enterprise instanceof AdoptionEnterprise){
            organizationJComboBox.addItem(Type.Adopter.getValue());
                organizationJComboBox.addItem(Type.Adoption.getValue());
+ 
+        }
+        if(enterprise instanceof VerificationEnterprise){
+
                organizationJComboBox.addItem(Type.FinanceCheck.getValue()); 
                  organizationJComboBox.addItem(Type.CriminalCheck.getValue()); 
         }
@@ -188,8 +193,13 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
       for (Type type : Organization.Type.values()){
+          System.out.println(organizationJComboBox.getSelectedItem() + " Checking");
+          System.out.println(type.getValue() + " With");
           if(organizationJComboBox.getSelectedItem().equals(type.getValue())){
               directory.createOrganization(type);
+              System.out.println(organizationJComboBox.getSelectedItem() + "Matched");
+          System.out.println(type.getValue() + "Matched");
+              
           }
       }
         

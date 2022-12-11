@@ -12,7 +12,7 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Adoption.AdopterOrganization;
 import Business.Organization.Adoption.AdoptionOrganization;
-import Business.Organization.Adoption.BackgroundAndCriminalCheckOrganization;
+import Business.Organization.Verification.BackgroundAndCriminalCheckOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdopterWorkRequest;
@@ -297,11 +297,13 @@ public class AdoptionCheckProcessRequestJPanel extends javax.swing.JPanel {
         for (Network network : business.getNetworkList()){
             for(Enterprise ent: network.getEnterpriseDirectory().getEnterpriseList()){
                 for(Organization organization: ent.getOrganizationDirectory().getOrganizationList()){
+                    System.out.println(organization.getName()+ "Checking");
                     if (organization instanceof BackgroundAndCriminalCheckOrganization){
 
                         org = organization;
                         break;
-                    } 
+                    }
+                    System.out.println(organization.getName()+ "Not an istance");
                 }
             }
         }
@@ -310,6 +312,7 @@ public class AdoptionCheckProcessRequestJPanel extends javax.swing.JPanel {
             org.getWorkQueue().getWorkRequestList().add(bgcreq);
             account.getWorkQueue().getWorkRequestList().add(bgcreq);
             business.getWorkQueue().getWorkRequestList().add(bgcreq);
+            System.out.println(bgcreq);
         }
         
         

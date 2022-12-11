@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Adoption.BackgroundAndCriminalCheckRole;
+package userinterface.Verification.BackgroundAndCriminalCheckRole;
 
+import userinterface.Verification.BackgroundAndCriminalCheckRole.BackgroundAndCriminalCheckProcessRequestJPanel;
 import Business.Adopter.Adopter;
 import Business.Adopter.AdopterDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Organization.Adoption.BackgroundAndCriminalCheckOrganization;
+import Business.Organization.Verification.BackgroundAndCriminalCheckOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.BGCWorkRequest;

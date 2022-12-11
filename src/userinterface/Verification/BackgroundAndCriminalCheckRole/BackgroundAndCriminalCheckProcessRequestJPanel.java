@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Adoption.BackgroundAndCriminalCheckRole;
+package userinterface.Verification.BackgroundAndCriminalCheckRole;
 
 import Business.Adopter.Adopter;
 import Business.Adopter.AdopterDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Organization.Adoption.BackgroundAndCriminalCheckOrganization;
-import Business.Organization.Adoption.FinanceCheckOrganization;
+import Business.Organization.Verification.BackgroundAndCriminalCheckOrganization;
+import Business.Organization.Verification.FinanceCheckOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdopterWorkRequest;
