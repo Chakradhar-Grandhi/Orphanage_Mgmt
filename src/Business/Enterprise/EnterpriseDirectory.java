@@ -42,6 +42,14 @@ public class EnterpriseDirectory {
             enterprise = new AdoptionEnterprise(name);
             enterpriseList.add(enterprise);
         }
+        else if (type == Enterprise.EnterpriseType.Verification)
+        {
+            enterprise = new VerificationEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
         return enterprise;
+        
+
+        
     }
 }

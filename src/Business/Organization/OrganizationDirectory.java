@@ -6,8 +6,8 @@ package Business.Organization;
 
 import Business.Organization.Adoption.AdopterOrganization;
 import Business.Organization.Adoption.AdoptionOrganization;
-import Business.Organization.Adoption.BackgroundAndCriminalCheckOrganization;
-import Business.Organization.Adoption.FinanceCheckOrganization;
+import Business.Organization.Verification.BackgroundAndCriminalCheckOrganization;
+import Business.Organization.Verification.FinanceCheckOrganization;
 import Business.Organization.Orphanage.ChildCareOrganization;
 import Business.Organization.Orphanage.ChildRegistrationOrganization;
 import Business.Organization.Orphanage.FinanceOrphanageOrganization;
@@ -71,10 +71,12 @@ public class OrganizationDirectory {
         else if (type.getValue().equals(Organization.Type.CriminalCheck.getValue())){
             organization = new BackgroundAndCriminalCheckOrganization();
             organizationList.add(organization);
+            System.out.println("Created criminal check");
         }
         else if (type.getValue().equals(Organization.Type.FinanceCheck.getValue())){
             organization = new FinanceCheckOrganization();
             organizationList.add(organization);
+            System.out.println("Created finance check");
         }
         else if (type.getValue().equals(Organization.Type.Adoption.getValue())){
             organization = new AdoptionOrganization();

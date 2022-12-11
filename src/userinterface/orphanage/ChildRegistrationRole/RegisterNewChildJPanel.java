@@ -15,11 +15,11 @@ import Business.Organization.Organization;
 import Business.Organization.Orphanage.ChildRegistrationOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.DoctorWorkRequest;
+import com.toedter.calendar.JCalendar;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.io.File;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +47,7 @@ public class RegisterNewChildJPanel extends javax.swing.JPanel {
  ChildDirectory directory;
  ChildRegistrationOrganization organization;
      Network network;
+     JCalendar calendar = new JCalendar();
     public RegisterNewChildJPanel(JPanel userProcessContainer, ChildDirectory directory, UserAccount account, Enterprise enterprise, EcoSystem business, Organization organization) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
@@ -55,6 +56,9 @@ public class RegisterNewChildJPanel extends javax.swing.JPanel {
        this.enterprise=enterprise;
        this.business = business;
 this.organization =(ChildRegistrationOrganization) organization;
+calenderPanel.add(calendar);
+calenderPanel.setLayout(new BorderLayout());
+calenderPanel.add(calendar, BorderLayout.CENTER);
 //jXDatePicker1.getMonthView().setUpperBound(new Date());
 
  for(Network net: business.getNetworkList()){
@@ -95,7 +99,7 @@ this.organization =(ChildRegistrationOrganization) organization;
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        dateTextField = new javax.swing.JTextField();
+        calenderPanel = new javax.swing.JLabel();
 
         jLabel8.setText("jLabel8");
 
@@ -185,7 +189,7 @@ this.organization =(ChildRegistrationOrganization) organization;
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(maleRDB)
                                         .addGap(18, 18, 18)
@@ -200,7 +204,7 @@ this.organization =(ChildRegistrationOrganization) organization;
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(calenderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -230,10 +234,10 @@ this.organization =(ChildRegistrationOrganization) organization;
                     .addComponent(femaleRDB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(calenderPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -281,17 +285,7 @@ this.organization =(ChildRegistrationOrganization) organization;
                 else if(femaleRDB.isSelected()){
                     gender = "Female";
                 }
-               /* Date date = jXDatePicker1.getDate();
-                DateFormat formatit = new SimpleDateFormat("yyyy-MM-dd");
-                String temp = "";
-                
-                Date regDate = new Date();
-                try {
-                    temp = formatit.format(date);
-                    regDate = formatit.parse(temp);
-                } catch (Exception ex) {
-                  JOptionPane.showMessageDialog(null, "Please select the registration date");
-                }*/
+               
                 String identificationMark = jTextArea1.getText();
                 
                 
@@ -305,7 +299,8 @@ this.organization =(ChildRegistrationOrganization) organization;
                 child.setChildname(childName);
                 child.setIdentificationMark(identificationMark);
                 child.setImageDetails(photoText.getText());
-                /*child.setRegistrationDate(regDate);*/child.setRegistrationDate(new SimpleDateFormat("yyyy-MM-dd").parse(dateTextField.getText()));
+                ///*child.setRegistrationDate(regDate);*/child.setRegistrationDate(new SimpleDateFormat("yyyy-MM-dd").parse(dateTextField.getText()));
+                child.setRegistrationDate(calendar.getDate());
                 child.setChildGender(gender);
                 child.setStatus("Newly Registered");
                 child.setMedicalStatus(child.getMedicalStatus()+"\n"+"Medically Unfit");
@@ -373,7 +368,7 @@ this.organization =(ChildRegistrationOrganization) organization;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox ageComboBox;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JTextField dateTextField;
+    private javax.swing.JLabel calenderPanel;
     private javax.swing.JRadioButton femaleRDB;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -405,27 +400,8 @@ this.organization =(ChildRegistrationOrganization) organization;
     }
 
     public boolean validation() throws ParseException {
-//         Date date = new Date();
-      DateFormat formait = new SimpleDateFormat("yyyy/MM/dd");
-      //String format = formait.format(date);
-//     Date todayDate = formait.parse(format);
-//     
-    /* String selectedFormaString ="";
-      try{
-      Date selected = jXDatePicker1.getDate();
-    selectedFormaString = formait.format(selected);
-     }
-     catch(Exception e){
-      JOptionPane.showMessageDialog(null, "Please select the registration date");
-      return true;
-     }*/ //dateformat validation
-    String datePattern="^((19|20)[0-9]{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
-    if(!Pattern.matches(datePattern, dateTextField.getText())){
-        JOptionPane.showMessageDialog(null, "Please enter date in yyyy-MM-dd");
-        return true;
-    }
-//     Date selectedDate = formait.parse(selectedFormaString);
- 
+        Date currentDate = new Date();
+        Date selectedDate = calendar.getDate();
      if(nameTextField.getText().isEmpty()){
          JOptionPane.showMessageDialog(null, "Please enter the name of the child");
          return true;
@@ -442,22 +418,8 @@ this.organization =(ChildRegistrationOrganization) organization;
          JOptionPane.showMessageDialog(null, "Please select the gender of the child");
          return true;
      }
-     /*else if(selectedDate.after(todayDate)){
-         JOptionPane.showMessageDialog(null, "Registration date cannot be before");
-         return true;
-     }
-     else if(selectedFormaString.isEmpty())
-     {
-        JOptionPane.showMessageDialog(null, "Please select the registration date");
-         return true;  
-     }*/
-     else if(dateTextField.getText().isEmpty())
-     {
-        JOptionPane.showMessageDialog(null, "Please select the registration date");
-         return true;  
-     }
-     else if(new SimpleDateFormat("yyyy-MM-dd").parse(dateTextField.getText()).compareTo(new Date())>1){
-         JOptionPane.showMessageDialog(null, "Registration date cannot be in future");
+     else if(selectedDate.compareTo(currentDate)>0){
+         JOptionPane.showMessageDialog(null, "Registration Date cannot be in future");
          return true;
      }
      else if(jTextArea1.getText().isEmpty()){

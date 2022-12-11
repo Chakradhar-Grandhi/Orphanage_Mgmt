@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Role.Adoption;
+package Business.Role.Verification;
 
 import Business.Adopter.AdopterDirectory;
 import Business.Child.ChildDirectory;
@@ -13,7 +13,7 @@ import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.Adoption.BackgroundAndCriminalCheckRole.BackgroundAndCriminalCheckWorkAreaJPanel;
+import userinterface.Verification.BackgroundAndCriminalCheckRole.BackgroundAndCriminalCheckWorkAreaJPanel;
 
 /**
  *

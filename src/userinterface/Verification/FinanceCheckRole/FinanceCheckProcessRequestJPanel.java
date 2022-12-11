@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Adoption.FinanceCheckRole;
+package userinterface.Verification.FinanceCheckRole;
 
 import Business.Adopter.Adopter;
 import Business.Adopter.AdopterDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Organization.Adoption.FinanceCheckOrganization;
+import Business.Organization.Verification.FinanceCheckOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.AdopterWorkRequest;

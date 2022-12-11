@@ -62,7 +62,7 @@
                                           <Component id="ageComboBox" alignment="0" max="32767" attributes="0"/>
                                           <Component id="nameTextField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="imageTextField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="dateTextField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="calendarPanel" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -112,7 +112,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="dateTextField" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="calendarPanel" alignment="3" min="-2" pref="152" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="imageLable" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
@@ -390,10 +390,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uploadBtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="dateTextField">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
+    <Component class="javax.swing.JLabel" name="calendarPanel">
     </Component>
   </SubComponents>
 </Form>

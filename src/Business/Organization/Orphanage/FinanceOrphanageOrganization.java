@@ -6,7 +6,7 @@
 package Business.Organization.Orphanage;
 
 import Business.Organization.Organization;
-import Business.Role.Orphanage.FinanceAssisstantRole;
+import Business.Role.Verification.FinanceAssisstantRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
