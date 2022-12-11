@@ -4,7 +4,9 @@
  */
 package Business.DB4OUtil;
 
+import Business.Adopter.Adopter;
 import Business.Adopter.AdopterDirectory;
+import Business.Child.Child;
 import Business.Child.ChildDirectory;
 import Business.EcoSystem;
 import org.junit.After;
@@ -32,5 +34,31 @@ public class DB4OUtilTest {
     public void testUserAccDirectorySize() {
         assertEquals(new DB4OUtil().UserAccDirectorySize(), 7);
         //fail("Adopter Directory Size not 7");
-    }    
+    }
+
+    @Test
+    public void testRetrieveDirectory() {
+        cdirectory = new DB4OUtil().retrieveDirectory();
+        
+        for(Child c: cdirectory.getChildList()){
+            if(c.getChildname().equals("abcc"))
+            assertEquals(c.getChildname(), "abcc"); 
+        }
+        
+        //fail("abcc not found in list");
+    }
+
+    @Test
+    public void testRetrieveUserDirectory() {
+        udirectory = new DB4OUtil().retrieveUserDirectory();
+        
+        for(Adopter c: udirectory.getAdoptersList()){
+            if(c.getName().equals("daadopter"))
+            assertEquals(c.getName(), "daadopter"); 
+        }
+        
+        //fail("daadopter not found in list");
+    }
+    
+    
 }
