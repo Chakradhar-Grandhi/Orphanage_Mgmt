@@ -60,5 +60,24 @@ public class DB4OUtilTest {
         //fail("daadopter not found in list");
     }
     
+    @Test
+    public void testcheckNetwork(){
+        system= new DB4OUtil().retrieveSystem();
+        assertEquals(system.getNetworkList().size(), 3); 
+        //fail("NetworkList size is not 3");
+    }
     
+    @Test
+    public void testcheckEmployee(){
+        system= new DB4OUtil().retrieveSystem();
+        assertEquals(system.getEmployeeDirectory().getEmployeeList().size(), 1); 
+        //fail("Employee size not 1");
+    }
+    
+    @Test
+    public void testRoleList(){
+        system= new DB4OUtil().retrieveSystem();
+        assertEquals(system.getSupportedRole().size(),1);
+        //fail("role list size not 1");
+    }
 }
