@@ -11,6 +11,7 @@ import Business.Child.Child;
 import Business.Child.ChildDirectory;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.JavaEmailSender;
 import Business.Network.Network;
 import Business.Organization.Adoption.AdopterOrganization;
 import Business.Organization.Organization;
@@ -187,7 +188,8 @@ public class ChildSelectionJPanel extends javax.swing.JPanel {
             account.getWorkQueue().getWorkRequestList().add(adc);
             business.getWorkQueue().getWorkRequestList().add(adc);
         } 
-        
+        new JavaEmailSender().createAndSendEmail("pawaryash837@gmail.com", "New Adoption Request",
+                adopter.getName()+"Has raised adoption request for "+ch.getChildname());
         adopter.setFlag(false);
         
         JOptionPane.showMessageDialog(null, "Adoption Req Raised");

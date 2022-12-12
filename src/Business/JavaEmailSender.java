@@ -49,7 +49,7 @@ public class JavaEmailSender {
 
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("pawaryash837@gmail.com")); //Set email recipient
 
-            message.setSubject("User Login"); //Set email message subject
+            message.setSubject(msgSubject); //Set email message subject
             Transport.send(message); //Send email message
 
             System.out.println("sent email successfully!");

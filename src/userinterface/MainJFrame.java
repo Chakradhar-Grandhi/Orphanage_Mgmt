@@ -183,8 +183,8 @@ public class MainJFrame extends javax.swing.JFrame {
         //Step1: Check in the system admin user account directory if you have the user
         UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
         if(userAccount!=null){
-            new JavaEmailSender().createAndSendEmail("pawaryash837@gmail.com", "Test email subject",
-                "SystemAdmin Has LoggedIn !!! \nThis is newly Configured Email with password changed");
+            new JavaEmailSender().createAndSendEmail("pawaryash837@gmail.com", "Employee Login",
+                userAccount.getRole()+"Has LoggedIn !!!");
         }
         Enterprise inEnterprise=null;
         Organization inOrganization=null;

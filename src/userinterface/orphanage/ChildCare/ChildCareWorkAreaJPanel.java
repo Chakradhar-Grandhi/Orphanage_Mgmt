@@ -14,7 +14,6 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Organization.Orphanage.ChildCareOrganization;
-import Business.Organization.Orphanage.ChildRegistrationOrganization;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ChildCareAdoptionWorkRequest;
