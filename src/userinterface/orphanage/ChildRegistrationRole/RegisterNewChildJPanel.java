@@ -390,12 +390,12 @@ calenderPanel.add(calendar, BorderLayout.CENTER);
     // End of variables declaration//GEN-END:variables
 
     private String browseImageFile() {
-           JFileChooser chooseFile = new JFileChooser();
+           JFileChooser chooseFile = new JFileChooser(new File("./"));
         chooseFile.showOpenDialog(null);
         File file = chooseFile.getSelectedFile();
         String filePath = file.getPath();
         System.out.println(filePath);
-        photoText.setText(filePath);
+        photoText.setText("./"+filePath.split("Mgmt/",2)[1]);
         return filePath;
     }
 
