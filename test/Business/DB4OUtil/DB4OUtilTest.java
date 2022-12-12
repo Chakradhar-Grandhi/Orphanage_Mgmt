@@ -4,13 +4,14 @@
  */
 package Business.DB4OUtil;
 
-import Business.Adopter.Adopter;
-import Business.Adopter.AdopterDirectory;
-import Business.Child.Child;
-import Business.Child.ChildDirectory;
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
+import Model.DB4OUtil.DB4OUtil;
+import Model.Adopter.Adopter;
+import Model.Adopter.AdopterDirectory;
+import Model.Child.Child;
+import Model.Child.ChildDirectory;
+import Model.EcoSystem;
+import Model.Enterprise.Enterprise;
+import Model.Network.Network;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
