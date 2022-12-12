@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.orphanage.ChildCare;
+package Views.orphanage.ChildCare;
 
-import Business.Adopter.Adopter;
-import Business.Adopter.AdopterDirectory;
-import Business.Child.Child;
-import Business.Child.ChildDirectory;
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.Network.Network;
-import Business.Organization.Organization;
-import Business.Organization.Orphanage.ChildCareOrganization;
-import Business.Role.Role;
-import Business.UserAccount.UserAccount;
-import Business.WorkQueue.ChildCareAdoptionWorkRequest;
-import Business.WorkQueue.ChildCareWorkRequest;
-import Business.WorkQueue.WorkRequest;
+import Model.Adopter.Adopter;
+import Model.Adopter.AdopterDirectory;
+import Model.Child.Child;
+import Model.Child.ChildDirectory;
+import Model.EcoSystem;
+import Model.Enterprise.Enterprise;
+import Model.Network.Network;
+import Model.Organization.Organization;
+import Model.Organization.Orphanage.ChildCareOrganization;
+import Model.Role.Role;
+import Model.UserAccount.UserAccount;
+import Model.WorkQueue.ChildCareAdoptionWorkRequest;
+import Model.WorkQueue.ChildCareWorkRequest;
+import Model.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

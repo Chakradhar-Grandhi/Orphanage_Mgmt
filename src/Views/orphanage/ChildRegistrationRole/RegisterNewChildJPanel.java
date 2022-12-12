@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.orphanage.ChildRegistrationRole;
+package Views.orphanage.ChildRegistrationRole;
 
-import Business.Child.Child;
-import Business.Child.ChildDirectory;
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.JavaEmailSender;
-import Business.Network.Network;
-import Business.Organization.DoctorOrganization;
-import Business.Organization.Organization;
-import Business.Organization.Orphanage.ChildRegistrationOrganization;
-import Business.UserAccount.UserAccount;
-import Business.WorkQueue.DoctorWorkRequest;
+import Model.Child.Child;
+import Model.Child.ChildDirectory;
+import Model.EcoSystem;
+import Model.Enterprise.Enterprise;
+import Model.JavaEmailSender;
+import Model.Network.Network;
+import Model.Organization.DoctorOrganization;
+import Model.Organization.Organization;
+import Model.Organization.Orphanage.ChildRegistrationOrganization;
+import Model.UserAccount.UserAccount;
+import Model.WorkQueue.DoctorWorkRequest;
 import com.toedter.calendar.JCalendar;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
