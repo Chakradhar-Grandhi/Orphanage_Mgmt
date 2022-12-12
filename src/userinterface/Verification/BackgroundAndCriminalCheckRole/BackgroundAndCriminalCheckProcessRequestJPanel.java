@@ -126,6 +126,10 @@ public class BackgroundAndCriminalCheckProcessRequestJPanel extends javax.swing.
             }
         });
         jScrollPane1.setViewportView(workTable);
+        if (workTable.getColumnModel().getColumnCount() > 0) {
+            workTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            workTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+        }
 
         jLabel5.setText("Name:");
 
@@ -225,7 +229,7 @@ public class BackgroundAndCriminalCheckProcessRequestJPanel extends javax.swing.
                                 .addGap(455, 455, 455))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(249, 249, 249)
                 .addComponent(jLabel3))

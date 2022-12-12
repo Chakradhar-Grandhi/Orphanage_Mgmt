@@ -18,8 +18,12 @@ import Business.Organization.Orphanage.ChildCareOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.ChildCareAdoptionWorkRequest;
 import Business.WorkQueue.ChildCareWorkRequest;
+import java.awt.CardLayout;
+import static java.time.Clock.system;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.MainJFrame;
 
 /**
  *
@@ -145,6 +149,10 @@ public class ChildSelectionJPanel extends javax.swing.JPanel {
             return;
         }
         Child ch = (Child) childTable.getValueAt(selectedRow, 0);
+        if(ch.getStatus().startsWith("Adopted by ")){
+            JOptionPane.showMessageDialog(null, "Child already adopted");
+        }
+        else{
         ChildCareAdoptionWorkRequest adc = new ChildCareAdoptionWorkRequest();
         adc.setChildId(ch.getChildId());
         adc.setUserId(uid);
@@ -181,6 +189,9 @@ public class ChildSelectionJPanel extends javax.swing.JPanel {
         } 
         
         adopter.setFlag(false);
+        
+        JOptionPane.showMessageDialog(null, "Adoption Req Raised");
+        }//else
     }//GEN-LAST:event_jButton1ActionPerformed
     public void populateChildTable(){
 

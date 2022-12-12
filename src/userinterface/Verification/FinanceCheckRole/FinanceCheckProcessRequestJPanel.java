@@ -133,6 +133,10 @@ public class FinanceCheckProcessRequestJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(workTable);
+        if (workTable.getColumnModel().getColumnCount() > 0) {
+            workTable.getColumnModel().getColumn(0).setPreferredWidth(200);
+            workTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+        }
 
         txtName.setEnabled(false);
 

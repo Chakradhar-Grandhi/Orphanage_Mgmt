@@ -300,13 +300,14 @@ public class ViewChildDetailsJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                 userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        ChildRegistrationWorkAreaPanel dwjp = (ChildRegistrationWorkAreaPanel) component;
-        dwjp.poplulateTable();
-        dwjp.populateChildRequestTable();
+//        Component[] componentArray = userProcessContainer.getComponents();
+//        Component component = componentArray[componentArray.length - 1];
+//        ChildRegistrationWorkAreaPanel dwjp = (ChildRegistrationWorkAreaPanel) component;
+//        dwjp.poplulateTable();
+//        dwjp.populateChildRequestTable();
         
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 

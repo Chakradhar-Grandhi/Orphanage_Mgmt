@@ -88,8 +88,10 @@ public class FinanceCheckWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workTable);
         if (workTable.getColumnModel().getColumnCount() > 0) {
+            workTable.getColumnModel().getColumn(0).setPreferredWidth(200);
             workTable.getColumnModel().getColumn(1).setResizable(false);
             workTable.getColumnModel().getColumn(3).setResizable(false);
+            workTable.getColumnModel().getColumn(4).setPreferredWidth(200);
         }
 
         processBtn.setText("Process Request");
