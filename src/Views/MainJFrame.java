@@ -16,6 +16,8 @@ import Model.UserAccount.UserAccount;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatLightOwlIJTheme;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMonokaiProContrastIJTheme;
 import java.awt.CardLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -33,6 +35,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     private ChildDirectory directory;
     private AdopterDirectory udirectory;
+    String userImage = "./uploads/profileImage/username.png";
+    String passImage = "./uploads/profileImage/pass.png";
     int trycatch=0;
     public MainJFrame() {
         initComponents();
@@ -40,6 +44,8 @@ public class MainJFrame extends javax.swing.JFrame {
         directory = dB4OUtil.retrieveDirectory();
         udirectory = dB4OUtil.retrieveUserDirectory();
          this.setSize(1680, 1050);
+         userImgLabel1.setIcon(new ImageIcon(new ImageIcon(userImage).getImage().getScaledInstance(userImgLabel1.getWidth(), userImgLabel1.getHeight(), Image.SCALE_SMOOTH)));
+        passImgLabel1.setIcon(new ImageIcon(new ImageIcon(passImage).getImage().getScaledInstance(passImgLabel1.getWidth(), passImgLabel1.getHeight(), Image.SCALE_SMOOTH)));
      //   this.directory = new ChildDirectory();
     }
 

@@ -29,13 +29,13 @@ public class DB4OUtilTest {
     
     @Test
     public void testChildDirectorySize() {
-        assertEquals(new DB4OUtil().childDirectorySize(), 6);
+        assertEquals(new DB4OUtil().childDirectorySize(), 1);
         //fail("Child directory size not 6");
     }
     
     @Test
     public void testUserAccDirectorySize() {
-        assertEquals(new DB4OUtil().UserAccDirectorySize(), 7);
+        assertEquals(new DB4OUtil().UserAccDirectorySize(), 1);
         //fail("Adopter Directory Size not 7");
     }
 
@@ -66,7 +66,7 @@ public class DB4OUtilTest {
     @Test
     public void testcheckNetwork(){
         system= new DB4OUtil().retrieveSystem();
-        assertEquals(system.getNetworkList().size(), 3); 
+        assertEquals(system.getNetworkList().size(), 1); 
         //fail("NetworkList size is not 3");
     }
     
@@ -107,7 +107,7 @@ public class DB4OUtilTest {
             }
             
         }
-        assertEquals(networklist.size(), 3); 
+        assertEquals(networklist.size(), 1); 
         //fail("NetworkList does not contain NY");
     }
 }

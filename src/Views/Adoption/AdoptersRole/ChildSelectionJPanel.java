@@ -5,20 +5,20 @@
  */
 package Views.Adoption.AdoptersRole;
 
-import Business.Adopter.Adopter;
-import Business.Adopter.AdopterDirectory;
-import Business.Child.Child;
-import Business.Child.ChildDirectory;
-import Business.EcoSystem;
-import Business.Enterprise.Enterprise;
-import Business.JavaEmailSender;
-import Business.Network.Network;
-import Business.Organization.Adoption.AdopterOrganization;
-import Business.Organization.Organization;
-import Business.Organization.Orphanage.ChildCareOrganization;
-import Business.UserAccount.UserAccount;
-import Business.WorkQueue.ChildCareAdoptionWorkRequest;
-import Business.WorkQueue.ChildCareWorkRequest;
+import Model.Adopter.Adopter;
+import Model.Adopter.AdopterDirectory;
+import Model.Child.Child;
+import Model.Child.ChildDirectory;
+import Model.EcoSystem;
+import Model.Enterprise.Enterprise;
+import Model.JavaEmailSender;
+import Model.Network.Network;
+import Model.Organization.Adoption.AdopterOrganization;
+import Model.Organization.Organization;
+import Model.Organization.Orphanage.ChildCareOrganization;
+import Model.UserAccount.UserAccount;
+import Model.WorkQueue.ChildCareAdoptionWorkRequest;
+import Model.WorkQueue.ChildCareWorkRequest;
 import java.awt.CardLayout;
 import static java.time.Clock.system;
 import javax.swing.JOptionPane;
